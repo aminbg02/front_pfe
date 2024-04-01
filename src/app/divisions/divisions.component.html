@@ -1,0 +1,274 @@
+<!-- Header Section Start -->
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Main</title>
+  <!-- CSS Files -->
+  <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/css/nice-select.min.css" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+  />
+  <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+  <link href="/assets/css/responsive.css" rel="stylesheet" />
+</head>
+<body>
+<div class="hero_area">
+  <div class="bg-box">
+    <img src="/assets/images/slider-bg.jpg" alt="" />
+  </div>
+  <!-- Header Section Start -->
+  <header class="header_section">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="index.html">
+          <span> Scheidt & Bachmann Maghreb </span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
+              <li class="nav-item active">
+                <a class="nav-link" href="">Career <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=""     (click)="navigateToDivisons()"> Divisons</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-login" (click)="navigateToLogin()">Login</a>
+              </li>
+              <li class="nav-item">
+                <button class="btn bsb-btn-xl btn-primary custom-signup-button" (click)="navigateToSignup()">Sign up</button>
+              </li>
+            </ng-container>
+            <ng-template #loggedInUser>
+              <li class="nav-item active">
+                <a class="nav-link" href="">Career <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=""> Divisons</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Contact</a>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link">{{ getUserDisplayName() }}</span>
+              </li>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+                <a class="nav-link" routerLink="/manage-account">Manage Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-logout" (click)="logout()">Logout</a>
+              </li>
+
+            </ng-template>
+          </ul>
+        </div>
+
+
+      </nav>
+    </div>
+  </header>
+  <!-- Slider Section Start -->
+  <section class="slider_section">
+    <div class="container">
+      <div class="detail-box col-md-9 mx-auto px-0">
+        <div class="img-box" id="s&b">
+          <img src="assets/images/s&b1.png" alt="" />
+          <h1>Maghreb</h1>
+        </div>
+        <h1>PARKING SOLUTIONS</h1>
+        <br />
+        <h1>SMART SOLUTIONS FOR YOUR PARKING BUSINESS</h1>
+      </div>
+    </div>
+  </section>
+  <!-- Slider Section End -->
+</div>
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>PARKING MANAGEMENT. SIMPLE, EFFICIENT, INNOVATIVE.</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="img-box">
+          <img src="./assets/images/entervo.sign-Enhanced.jpg" alt="" />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="detail-box">
+
+          <p>
+            For both car park owners and motorists alike, parking is becoming increasingly digital, connected, seamless and, above all, more user friendly – when the right partner is by your side. A partner like Scheidt & Bachmann. For groundbreaking solutions from ticketless entry and exit, smart guidance systems with optimized utilization of parking spaces, to convenient payment processes that can be carried out frictionless and digitally. Would you like to manage your car park intelligently and cost-effectively? Are you looking for future-oriented technologies that enable efficient use of space and a high level of customer satisfaction? Have you been searching for holistic concepts in which all components come from a single source? And do you want a service partner you can always rely on?
+          </p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>RAILWAY SIGNALLING </h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="img-box">
+          <img src="./assets/images/slider-signalling-systems-01.jpg" alt="" />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="detail-box">
+          <p>
+            Global mobility is today one of the important economy factors. To fullfill these demands, infrastructure operators need competent partners.
+          </p>
+          <p>
+            Scheidt & Bachmann is one of the most successful manufacturers and has more than 150 years of experience in regards to signalling technology.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>FARE COLLECTION SYSTEMS
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="img-box">
+          <img src="./assets/images/Tap_Validator_blau.png" alt="" />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="detail-box">
+          <h3>We Are Here For Help</h3>
+          <p>
+            Scheidt & Bachmann Fare Collection Systems is a leading provider of system solutions that make using public transport easy. In partnership with transport operators around the world, we are committed to making travel as pleasant and stress-free as possible for passengers. We combine the innovative products and services of our brand FareGo with the unique expertise
+            of our international team. The result is reliable, intuitive, and forward-looking fare collection systems that help make sustainable mobility accessible to everyone.
+            We’ll take you there.</p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>FUEL RETAIL SOLUTIONS</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="img-box">
+          <img src="./assets/images/SIQMA_EV_Charging_Mulit_Energy.jpg" alt="" />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="detail-box">
+          <h3>We Are Here For Help</h3>
+          <p>
+            Each innovation takes courage – and someone to take that “first step forward” risk. At Scheidt & Bachmann, we have taken that first step forward many times – it’s in our corporate DNA. Scheidt & Bachmann has accompanied the market development, from the simple station through to the “mobility supermarket”, and has often been at the heart of pioneering work.
+
+            Our extensive experience and technical competence is represented throughout our product brand, SIQMA. With SIQMA, our goal is to make your fuel retail business even more successful and prepare it for the future of mobility hubs. Join us making the next step.
+            Our SIQMA solutions enable the seamless connection of e-charging points to our POS systems, indoor and outdoor payment and self-checkout solutions. This way, e-charging and shop sales can be conveniently paid as one transaction in an open payment system, offering numerous cross-selling opportunities and reclaiming customer dialogue for operators.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Info Section Start -->
+<section class="info_section">
+  <div class="container">
+    <div class="info_top">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 info_col">
+          <div class="info_form">
+            <div class="img-box" > <!-- hony ken fama id id="s&b" -->
+              <img src="assets/images/s&b2.png" alt="" />
+            </div>
+            <div class="social_box"></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info_col">
+          <div class="info_detail">
+            <h4>BUSINESS DIVISIONS</h4>
+            <ul>
+              <li>Parking Solutions</li>
+              <li>Signalling Systems</li>
+              <li>Fare Collection Systems</li>
+              <li>Fuel Retail Solutions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info_col">
+          <div class="info_detail">
+            <h4>SOCIAL MEDIA</h4>
+            <div class="social_media">
+              <div class="social_item">
+                <img src="assets/images/xing.png" alt="Social Media Image 1" />
+                <span>Xing</span>
+              </div>
+              <div class="social_item">
+                <img src="assets/images/ln.png" alt="Social Media Image 2" />
+                <span>LinkedIn</span>
+              </div>
+              <div class="social_item">
+                <img src="assets/images/ig.png" alt="Social Media Image 3" />
+                <span>Instagram </span>
+              </div>
+              <div class="social_item">
+                <img src="assets/images/ig.png" alt="Social Media Image 4" />
+                <span>Instagram Parking Solutions </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info_col">
+          <h4>Contact us</h4>
+          <p>
+            3 Bis rue de la Teinturerie – Z.I. Sidi Rezig 2033 Megrine – Ben Arous Tunisia
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
