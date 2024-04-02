@@ -10,7 +10,7 @@ import {JwtService} from "../services/jwt.service";
 })
 export class JobsComponent implements OnInit {
   jobs: any[] = [];
-  private apiUrl = 'http://127.0.0.1:5000'; // Replace with your Flask API URL
+  private apiUrl = 'http://127.0.0.1:5000';
 
 
   ngOnInit() {

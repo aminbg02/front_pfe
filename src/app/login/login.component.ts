@@ -41,16 +41,16 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe(
       (response: any) => {
         console.log('Response from API:', response);
-        // Handle successful login
+
         if (response.token) {
-          // Store the token in local storage
+
           localStorage.setItem('token', response.token);
           const tokenPayload = this.decodeToken(response.token);
           const userRole = tokenPayload.role;
 
-          this.showSuccessModal = true; // Show the success modal
+          this.showSuccessModal = true;
 
-          // Redirect to the homepage after 3 seconds
+
           setTimeout(() => {
             this.router.navigate(['/homepage']);
           }, 3000);
@@ -60,7 +60,9 @@ export class LoginComponent {
         }
       },
       (error) => {
-        // Handle login error
+
+
+
         console.error(error);
         if (error.status === 401) {
           if (error.error && error.error.message) {

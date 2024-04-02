@@ -23,13 +23,11 @@ export class ChangeemailComponent {
             .subscribe(
                 response => {
                     console.log(response);
-                    // Handle successful response
-                    // You can show a success message or perform any other necessary actions
+
                 },
                 error => {
                     console.error('Error changing email:', error);
-                    // Handle error
-                    // You can show an error message or perform any other necessary actions
+
                 }
             );
     }
@@ -50,11 +48,11 @@ export class ChangeemailComponent {
 
 
     navigateToSignup() {
-        this.router.navigate(['/signup']); // Navigate to the /signup route
+        this.router.navigate(['/signup']);
     }
 
     navigateToLogin() {
-        this.router.navigate(['/login']); // Navigate to the /login route
+        this.router.navigate(['/login']);
     }
 
     isUserSignedIn(): boolean {
