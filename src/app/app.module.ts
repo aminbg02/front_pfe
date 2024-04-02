@@ -14,6 +14,13 @@ import { ManagejobsComponent } from './managejobs/managejobs.component';
 import { JobsComponent } from './jobs/jobs.component';
 
 import { DivisionsComponent } from './divisions/divisions.component';
+import { ContactComponent } from './contact/contact.component';
+import { ModalComponent } from './modal/modal.component';
+
+import { ChangeusernameComponent } from './changeusername/changeusername.component';
+import { ResetpwComponent } from './resetpw/resetpw.component';
+import { ChangeemailComponent } from './changeemail/changeemail.component';
+
 
 
 
@@ -30,6 +37,12 @@ import { DivisionsComponent } from './divisions/divisions.component';
     ManagejobsComponent,
     JobsComponent,
     DivisionsComponent,
+    ContactComponent,
+    ModalComponent,
+    ChangeusernameComponent,
+    ResetpwComponent,
+    ChangeemailComponent,
+
 
   ],
   imports: [

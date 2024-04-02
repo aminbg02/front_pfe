@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component'; // Import your HomepageComponent
+import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
-import {LoginComponent} from "./login/login.component"; // Import your SignupComponent
+import {LoginComponent} from "./login/login.component";
 import {ManageaccountComponent} from "./manageaccount/manageaccount.component";
 import {ManagejobsComponent} from "./managejobs/managejobs.component";
 import {DivisionsComponent} from "./divisions/divisions.component";
 import {JobsComponent} from "./jobs/jobs.component";
+import {ContactComponent} from "./contact/contact.component";
+import {ResetpwComponent} from "./resetpw/resetpw.component";
+import {ChangeusernameComponent} from  "./changeusername/changeusername.component"
+import {ChangeemailComponent} from "./changeemail/changeemail.component"
 
 
 const routes: Routes = [
@@ -18,6 +22,12 @@ const routes: Routes = [
   { path: 'managejobs', component: ManagejobsComponent },
   { path: 'divisons', component: DivisionsComponent },
   { path: 'jobs', component: JobsComponent },
+  { path: 'managejobs', component: ManagejobsComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'resetpw', component: ResetpwComponent },
+  { path: 'changeusername', component: ChangeusernameComponent },
+  { path: 'changeemail', component: ChangeemailComponent },
+
 ];
 
 @NgModule({

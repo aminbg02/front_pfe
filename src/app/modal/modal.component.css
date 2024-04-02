@@ -1,0 +1,4 @@
+.modal {
+    z-index: 9999; /* Ensure modal is on top */
+    background-color: white; /* Add a background color for visibility */
+}

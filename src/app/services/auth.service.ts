@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:5000'; // Replace with your Flask API URL
+  private apiUrl = 'http://127.0.0.1:5000';
 
   constructor(private http: HttpClient) { }
 
-  // Add a method to handle the login request
+
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
     return this.http.post(`${this.apiUrl}/login`, body);

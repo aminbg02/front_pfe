@@ -731,6 +731,9 @@ a:focus {
 }
 
 .footer_section p a {
-  color: inherit;
-}
+  color: inherit; }
 
+.contact-form
+{
+  padding-left: 10px;
+}

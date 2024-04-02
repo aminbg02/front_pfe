@@ -2,10 +2,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Success</h5>
+        <h5 class="modal-title">{{ modalTitle }}</h5>
       </div>
       <div class="modal-body">
-        <p>Your email has been sent, we will be back to you as soon as possible.</p>
+        <p>{{ modalMessage }}</p>
+        <!-- Add temporary text or elements here -->
+        <p>Temporary text</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="closeModal()">OK</button>

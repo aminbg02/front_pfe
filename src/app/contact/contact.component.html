@@ -12,6 +12,17 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
     rel="stylesheet"
   />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    .contact-header h2,
+    .contact-header p,
+    .form-group label,
+    .form-group input,
+    .form-group textarea,
+    .btn {
+      font-family: 'Roboto';
+    }
+  </style>
   <link rel="stylesheet" href="/assets/css/nice-select.min.css" />
   <link
     rel="stylesheet"
@@ -38,12 +49,14 @@
           <ul class="navbar-nav">
             <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
               <li class="nav-item active">
-                <a class="nav-link"  (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">Career <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <a class="nav-link" href=""     (click)="navigateToDivisons()"> Divisons</a>
               </li>
-
+              <li class="nav-item">
+                <a class="nav-link">Contact</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link btn-login" (click)="navigateToLogin()">Login</a>
               </li>
@@ -53,10 +66,10 @@
             </ng-container>
             <ng-template #loggedInUser>
               <li class="nav-item active">
-                <a class="nav-link" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">Career <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <a class="nav-link" href=""> Divisons</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link">Contact</a>
@@ -65,12 +78,11 @@
                 <span class="nav-link">{{ getUserDisplayName() }}</span>
               </li>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <a class="nav-link" (click)="navigateToManageAccount()">Manage Account</a>
+                <a class="nav-link" routerLink="/manage-account">Manage Account</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link btn-logout" (click)="logout()">Logout</a>
               </li>
-
             </ng-template>
           </ul>
         </div>
@@ -79,8 +91,6 @@
       </nav>
     </div>
   </header>
-  <!-- Header Section End -->
-
   <!-- Slider Section Start -->
   <section class="slider_section">
     <div class="container">
@@ -97,91 +107,61 @@
   </section>
   <!-- Slider Section End -->
 </div>
+<br><br><br>
 
-<!-- About Section Start -->
-<section class="about_section layout_padding">
-  <div class="container">
-    <div class="heading_container">
-      <h2>About Us</h2>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="img-box">
-          <img src="./assets/images/about-img.jpg" alt="" />
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="detail-box">
-          <h3>We Are Here For Help</h3>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic aliquid aspernatur
-            aperiam sed veniam libero excepturi. Impedit labore, dolores molestias dolore saepe
-            suscipit, totam aliquam nam asperiores amet ullam? Inventore!
-          </p>
-          <p>
-            Molestiae odio earum non qui cumque provident voluptates, repellendus
-            exercitationem, possimus at iste corrupti officiis unde alias eius ducimus
-            reiciendis soluta eveniet. Nobis ullam ab omnis quasi expedita.
-          </p>
-          <a href=""> Read More </a>
-        </div>
+<div class="contact-container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="contact-header">
+        <h2 class="text-center">Get in Touch</h2>
+        <p class="text-center">Have a question or want to collaborate? Drop us a line!</p>
       </div>
     </div>
   </div>
-</section>
-<!-- About Section End -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="contact-form">
+        <form (ngSubmit)="sendEmail()">
 
-<!-- Values Section Start -->
-<section class="why_section layout_padding-bottom">
-  <div class="container">
-    <div class="col-md-10 px-0">
-      <div class="heading_container">
-        <h2>Our Values</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-4 mx-auto">
-        <div class="box">
-          <div class="detail-box">
-            <h4>RESPECT</h4>
-            <p>
-              Respect is the cornerstone of our interactions, both internally and externally. We
-              value diversity, empathy, and open communication, fostering an inclusive
-              environment where everyone feels valued and heard.
-            </p>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" [(ngModel)]="email" required>
           </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 mx-auto">
-        <div class="box">
-          <div class="detail-box">
-            <h4>RELIABILITY</h4>
-            <p>
-              We pride ourselves on our reliability and consistency. With a dedication to
-              delivering on our promises and exceeding expectations, we build trust with our
-              clients, partners, and team members, ensuring long-lasting relationships built on
-              reliability and accountability.
-            </p>
+
+          <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" class="form-control" [(ngModel)]="subject" required>
           </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 mx-auto">
-        <div class="box">
-          <div class="detail-box">
-            <h4>TEAM SPIRIT AND PASSION</h4>
-            <p>
-              We believe in the power of collaboration and enthusiasm. With a shared sense of
-              purpose and a passion for what we do, we foster a vibrant team spirit that drives
-              us to achieve extraordinary results together.
-            </p>
+
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" class="form-control" [(ngModel)]="message" required></textarea>
           </div>
-        </div>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
       </div>
     </div>
   </div>
-</section>
-<!-- Values Section End -->
+</div>
 
+<br><br><br><br>
+<app-modal
+  *ngIf="showSuccessModal"
+  [showModal]="showSuccessModal"
+  [modalType]="'success'"
+  [modalMessage]="successMessage"
+  (modalClosed)="showSuccessModal = false"
+></app-modal>
+
+<app-modal
+  *ngIf="showErrorModal"
+  [showModal]="showErrorModal"
+  [modalType]="'error'"
+  [modalMessage]="errorMessage"
+  (modalClosed)="showErrorModal = false"
+></app-modal>
 <!-- Info Section Start -->
 <section class="info_section">
   <div class="container">
@@ -239,7 +219,4 @@
     </div>
   </div>
 </section>
-<!-- Info Section End -->
 
-</body>
-</html>

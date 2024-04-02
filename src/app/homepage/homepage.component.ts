@@ -47,4 +47,12 @@ export class HomepageComponent {
     this.router.navigate(['/divisons']);
 
   }
+
+  navigateToDJobs() {
+    this.router.navigate(['/jobs']);
+  }
+
+  navigateToManageAccount() {
+    this.router.navigate(['/manageaccount']);
+  }
 }

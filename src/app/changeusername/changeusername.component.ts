@@ -4,36 +4,42 @@ import {Router} from "@angular/router";
 import {JwtService} from "../services/jwt.service";
 
 @Component({
-  selector: 'app-managejobs',
-  templateUrl: './managejobs.component.html',
-  styleUrls: ['./managejobs.component.css']
+  selector: 'app-changeusername',
+  templateUrl: './changeusername.component.html',
+  styleUrls: ['./changeusername.component.css']
 })
-
-export class ManagejobsComponent {
-
-  constructor(private http: HttpClient,private router: Router, public jwtService: JwtService) { }
-
-  jobs: any[] = [];
-  private apiUrl = 'http://127.0.0.1:5000'; // Replace with your Flask API URL
+export class ChangeusernameComponent {
 
 
-  ngOnInit() {
-    this.fetchJobData();
+
+
+
+
+  // @ts-ignore
+  newUsername: string;
+  constructor(private http: HttpClient, private router: Router, public jwtService: JwtService) { }
+
+  changeUsername() {
+    const formData = {
+      email: this.jwtService.getEmail(),
+      new_name: this.newUsername
+    };
+
+    this.http.post('http://127.0.0.1:5000/changename', formData)
+        .subscribe(
+            response => {
+              console.log(response);
+              // Handle successful response
+              // You can show a success message or perform any other necessary actions
+            },
+            error => {
+              console.error('Error changing name:', error);
+              // Handle error
+              // You can show an error message or perform any other necessary actions
+            }
+        );
   }
 
-  fetchJobData() {
-    this.http.get(`${this.apiUrl}/getalljobs`).subscribe(
-      (response: any) => {
-        this.jobs = response;
-      },
-      (error) => {
-        console.error('Error fetching job data:', error);
-      }
-    );
-  }
-  stripHtmlTags(description: string): string {
-    return description.replace(/<\/?p>/g, '');
-  }
 
   getUserDisplayName(): string {
     const name = this.jwtService.getName();
@@ -76,5 +82,5 @@ export class ManagejobsComponent {
     this.router.navigate(['/jobs']);
   }
 
-
 }
+
