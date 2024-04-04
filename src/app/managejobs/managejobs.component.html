@@ -226,7 +226,7 @@
                 <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">Contact</a>
+                <a class="nav-link" (click)="navigateToContact()">Contact</a>
               </li>
               <li class="nav-item">
                 <span class="nav-link">{{ getUserDisplayName() }}</span>
@@ -265,42 +265,48 @@
   <!-- Slider Section End -->
 </div>
 
-  <div class="row">
-    <div class="col-lg-10 mx-auto mb-4">
-      <div class="section-title text-center ">
-        <h3 class="top-c-sep">Grow your career with us</h3>
-      </div>
+<div class="row">
+  <div class="col-lg-10 mx-auto mb-4">
+    <div class="section-title text-center ">
+      <h3 class="top-c-sep">Grow your career with us</h3>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-10 mx-auto">
-      <div class="career-search mb-60">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 my-3">
-          </div>
-        </div>
-      </div>
-      <div class="filter-result">
-        <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let job of jobs">
-          <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-            <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-              {{ job.name.charAt(0) }}{{ job.name.charAt(1) }}
-            </div>
-            <div class="job-content">
-              <h5 class="text-center text-md-left">{{ job.name }}</h5>
-              <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
-                <li class="mr-md-4">{{ stripHtmlTags(job.description) }}</li>
-              </ul>
-            </div>
-          </div>
-          <div class="job-right my-4 flex-shrink-0">
-            <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light">Modify</a>
-            <a href="#" class="btn d-block w-100 d-sm-inline-block btn-danger mt-2">Delete Job</a>
-          </div>
+</div>
+<div class="row">
+  <div class="col-lg-10 mx-auto">
+    <div class="career-search mb-60">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 my-3">
         </div>
       </div>
     </div>
+    <div class="filter-result">
+      <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let job of jobs">
+        <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+          <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+            {{ job.name.charAt(0) }}{{ job.name.charAt(1) }}
+          </div>
+          <div class="job-content">
+            <h5 class="text-center text-md-left">{{ job.name }}</h5>
+            <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+              <li class="mr-md-4">{{ stripHtmlTags(job.description) }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job-right my-4 flex-shrink-0">
+          <button class="btn btn-light" (click)="openModal(job)">Modify</button>
+          <a href="#" class="btn d-block w-100 d-sm-inline-block btn-danger mt-2">Delete Job</a>
+        </div>
+      </div>
+
+    </div>
+    <app-modifymodal [showModal]="showModal" (modalClosed)="showModal = false"></app-modifymodal>
+
+
+
   </div>
+</div>
+
 
 
 <!-- Info Section Start -->
@@ -359,6 +365,7 @@
       </div>
     </div>
   </div>
+
 </section>
 
 

@@ -1,0 +1,27 @@
+<div class="modal" [ngClass]="{'show': showModal}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="closeModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="selectedJobData.name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" [(ngModel)]="selectedJobData.description" name="description" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateJob()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

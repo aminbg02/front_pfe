@@ -43,14 +43,10 @@ export class LoginComponent {
         console.log('Response from API:', response);
 
         if (response.token) {
-
           localStorage.setItem('token', response.token);
           const tokenPayload = this.decodeToken(response.token);
           const userRole = tokenPayload.role;
-
           this.showSuccessModal = true;
-
-
           setTimeout(() => {
             this.router.navigate(['/homepage']);
           }, 3000);

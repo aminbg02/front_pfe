@@ -68,7 +68,6 @@
       <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
     </div>
   </div>
-  <app-success-modal [showModal]="showSuccessModal" (modalClosed)="showSuccessModal = false"></app-success-modal>
-
+  <app-modal [showModal]="showSuccessModal"></app-modal>
 
 </section>

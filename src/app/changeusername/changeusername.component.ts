@@ -81,5 +81,8 @@ export class ChangeusernameComponent {
     this.router.navigate(['/jobs']);
   }
 
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }
 }
 

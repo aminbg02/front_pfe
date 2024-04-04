@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JwtService} from "../services/jwt.service";
+import {ModifyModalComponent} from "../modifymodal/modifymodal.component";
 
 @Component({
   selector: 'app-managejobs',
@@ -14,13 +15,27 @@ export class ManagejobsComponent {
   constructor(private http: HttpClient,private router: Router, public jwtService: JwtService) { }
 
   jobs: any[] = [];
-  private apiUrl = 'http://127.0.0.1:5000'; // Replace with your Flask API URL
+  private apiUrl = 'http://127.0.0.1:5000';
+
+
+  @Input() showModal: boolean = false;
+
+  @Input() modalType: 'success' | 'error' = 'success';
+  @Input() modalMessage: string = '';
+  @Output() modalClosed = new EventEmitter<void>();
+  selectedJobData: any = {};
+
 
 
   ngOnInit() {
     this.fetchJobData();
+    this.selectedJobData = JSON.parse(localStorage.getItem('selectedJob') || '{}');
   }
-
+  closeModal() {
+    this.showModal = false;
+    localStorage.removeItem('selectedJob');
+    this.modalClosed.emit();
+  }
   fetchJobData() {
     this.http.get(`${this.apiUrl}/getalljobs`).subscribe(
       (response: any) => {
@@ -76,5 +91,15 @@ export class ManagejobsComponent {
     this.router.navigate(['/jobs']);
   }
 
+
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }
+
+
+  openModal(job: any) {
+    this.showModal = false;
+    localStorage.setItem('selectedJob', JSON.stringify(job));
+    this.showModal = true; }
 
 }

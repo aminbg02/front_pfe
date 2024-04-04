@@ -28,6 +28,8 @@ export class JobsComponent implements OnInit {
       }
     );
   }
+
+
   stripHtmlTags(description: string): string {
     return description.replace(/<\/?p>/g, '');
   }
@@ -71,5 +73,9 @@ export class JobsComponent implements OnInit {
 
   navigateToDJobs() {
     this.router.navigate(['/jobs']);
+  }
+
+  navigateToContact() {
+    this.router.navigate(['/contact']);
   }
 }

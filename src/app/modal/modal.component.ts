@@ -1,27 +1,29 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() modalType: 'success' | 'error' = 'success';
   @Input() modalMessage: string = '';
 
+
   modalTitle: string = '';
 
-    ngOnInit() {
-        console.log('Modal component initialized');
-        this.modalTitle = this.modalType === 'success' ? 'Success' : 'Error';
-    }
+  ngOnInit() {
+    this.modalTitle = this.modalType === 'success' ? 'Registration  Successful' : 'Login Error';
+    this.modalMessage = this.modalType === 'success' ? 'You will be redirceted to the home page shortly!' : 'Login Error';
+
+  }
 
   @Output() modalClosed = new EventEmitter<void>();
 
-    closeModal() {
-        console.log('Modal closed');
-        this.showModal = false;
-        this.modalClosed.emit();
-    }
+  closeModal() {
+    console.log('Modal closed');
+    this.showModal = false;
+    this.modalClosed.emit();
+  }
 }

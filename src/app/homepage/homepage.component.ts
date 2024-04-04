@@ -55,4 +55,8 @@ export class HomepageComponent {
   navigateToManageAccount() {
     this.router.navigate(['/manageaccount']);
   }
+
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }
 }

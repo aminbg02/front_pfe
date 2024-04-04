@@ -41,7 +41,16 @@ export class DivisionsComponent {
     this.router.navigate(['/homepage']);
   }
 
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }
+
   navigateToDivisons() {
     this.router.navigate(['/divisons']);
   }
+
+  navigateToDJobs() {
+    this.router.navigate(['/jobs']);
+  }
+
 }

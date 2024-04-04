@@ -72,5 +72,8 @@ export class ChangeemailComponent {
     navigateToDJobs() {
         this.router.navigate(['/jobs']);
     }
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }
 }
 

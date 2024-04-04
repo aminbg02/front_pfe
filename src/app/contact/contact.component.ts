@@ -86,4 +86,9 @@ export class ContactComponent {
           this.errorMessage = "An error occurred.";
         }
       );
-  } }
+
+  }
+
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }}

@@ -34,7 +34,6 @@ export class SignupComponent {
           localStorage.setItem('token', response.token);
           // Navigate to the homepage or any other desired route
           this.showSuccessModal = true;
-
           // Navigate to the homepage after 10 seconds
           setTimeout(() => {
             this.router.navigate(['/homepage']);
