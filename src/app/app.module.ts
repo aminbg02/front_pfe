@@ -22,6 +22,7 @@ import { ChangeemailComponent } from './changeemail/changeemail.component';
 import { LoginmodalComponent } from './loginmodal/loginmodal.component';
 import { FormmodalComponent } from './formmodal/formmodal.component';
 import { ModifyModalComponent } from './modifymodal/modifymodal.component';
+import { DeletemodalComponent } from './deletemodal/deletemodal.component';
 
 
 
@@ -45,6 +46,7 @@ import { ModifyModalComponent } from './modifymodal/modifymodal.component';
     LoginmodalComponent,
     FormmodalComponent,
     ModifyModalComponent,
+    DeletemodalComponent,
 
 
   ],

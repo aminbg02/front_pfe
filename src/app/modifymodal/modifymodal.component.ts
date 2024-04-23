@@ -46,6 +46,7 @@ export class ModifyModalComponent implements OnInit,OnChanges {
           (response: any) => {
             if (response.message) {
               alert(response.message);
+              localStorage.removeItem('selectedJob');
               this.showModal = false;
               // Add logic to reload the jobs list or navigate to the jobs list page
             }

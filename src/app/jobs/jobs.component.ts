@@ -21,13 +21,15 @@ export class JobsComponent implements OnInit {
   fetchJobData() {
     this.http.get(`${this.apiUrl}/getalljobs`).subscribe(
       (response: any) => {
-        this.jobs = response;
+        // @ts-ignore
+        this.jobs = response.filter(job => job.name !== 'Spontaneous Application');
       },
       (error) => {
         console.error('Error fetching job data:', error);
       }
     );
   }
+
 
 
   stripHtmlTags(description: string): string {
