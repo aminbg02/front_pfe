@@ -5,6 +5,17 @@ body {
   overflow-x: hidden;
 }
 
+
+.dark-yellow {
+  color: #ffe400; /* Lighter yellow color */
+  transition: color 0.3s; /* Smooth transition effect */
+}
+
+.dark-yellow:hover {
+  color: rgba(255, 228, 0, 0.5); /* Lighter yellow color with 50% opacity */
+}
+
+
 .layout_padding {
   padding: 90px 0;
 }
@@ -141,12 +152,11 @@ a:focus {
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
-  padding: 7px 20px;
+  padding: 7px 15px; /* Adjust the padding to increase the spacing */
   color: #ffffff;
   text-align: center;
   text-transform: uppercase;
 }
-
 
 .custom_nav-container .navbar-toggler {
   outline: none;
@@ -722,3 +732,36 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+.custom-button {
+  width: 85px; /* Define the width of the button */
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  font-size: 13px;
+}
+
+.custom-button:hover {
+  background-color: yellow;
+  color: black;
+  transform: translateY(-3.5px);
+}
+
+.custom-button:active {
+  transform: translateY(-0.5px);
+}
+
+
+.nav-item {
+  margin-right: 20px; /* Adjust the value to increase or decrease the spacing */
+}
+
+.nav-item:last-child {
+  margin-right: 0; /* Remove the right margin for the last button */
+}

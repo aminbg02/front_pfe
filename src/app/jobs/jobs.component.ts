@@ -41,13 +41,15 @@ export class JobsComponent implements OnInit {
     const role = this.jwtService.getRole();
 
     if (role === 'admin') {
-      return 'Admin';
+      // @ts-ignore
+      return this.jwtService.getName();
     } else if (name) {
       return name;
     } else {
       return 'User';
     }
   }
+
 
 
 
@@ -79,5 +81,14 @@ export class JobsComponent implements OnInit {
 
   navigateToContact() {
     this.router.navigate(['/contact']);
+  }
+
+  navigateToManageJobs() {
+    this.router.navigate(['/managejobs'])
+  }
+
+  navigateToManageAccount() {
+    this.router.navigate(['/manageaccount'])
+
   }
 }

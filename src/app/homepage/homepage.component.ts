@@ -8,15 +8,24 @@ import { JwtService } from "../services/jwt.service";
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent {
+  isHovered: boolean;
+  // @ts-ignore
+  hoveredElement: string;
 
-  constructor(private router: Router, public jwtService: JwtService) { }
+  constructor(private router: Router, public jwtService: JwtService) {
+    this.isHovered = false;
+  }
+  setHoveredElement(element: string): void {
+    this.hoveredElement = element;
+  }
 
   getUserDisplayName(): string {
     const name = this.jwtService.getName();
     const role = this.jwtService.getRole();
 
     if (role === 'admin') {
-      return 'Admin';
+      // @ts-ignore
+      return this.jwtService.getName();
     } else if (name) {
       return name;
     } else {
@@ -51,6 +60,9 @@ export class HomepageComponent {
   navigateToDJobs() {
     this.router.navigate(['/jobs']);
   }
+  navigateToManageJobs() {
+    this.router.navigate(['/managejobs']);
+  }
 
   navigateToManageAccount() {
     this.router.navigate(['/manageaccount']);
@@ -59,4 +71,17 @@ export class HomepageComponent {
   navigateToContact() {
     this.router.navigate(['/contact']);
   }
+
+  navigatePerRole(): void {
+    if (this.jwtService.getRole() === 'admin') {
+      this.router.navigate(['/managejobs']);
+    } else {
+      this.router.navigate(['/jobs']);
+    }
+  }
+
+  redirectToWebpage(url: string): void {
+    window.open(url, '_blank'); // Opens the URL in a new tab
+  }
+
 }

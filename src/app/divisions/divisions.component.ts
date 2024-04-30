@@ -16,7 +16,8 @@ export class DivisionsComponent {
     const role = this.jwtService.getRole();
 
     if (role === 'admin') {
-      return 'Admin';
+      // @ts-ignore
+      return this.jwtService.getName();
     } else if (name) {
       return name;
     } else {
@@ -53,4 +54,12 @@ export class DivisionsComponent {
     this.router.navigate(['/jobs']);
   }
 
+  navigateToManageJobs() {
+    this.router.navigate(['/managejobs'])
+  }
+
+  navigateToManageAccount() {
+    this.router.navigate(['/manageaccount'])
+
+  }
 }

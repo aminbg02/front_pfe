@@ -204,37 +204,40 @@
           <ul class="navbar-nav">
             <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
               <li class="nav-item active">
-                <a class="nav-link"  (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></a>
+                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link btn-login" (click)="navigateToLogin()">Login</a>
+                <button class="custom-button" (click)="navigateToLogin()">Login</button>
               </li>
               <li class="nav-item">
-                <button class="btn bsb-btn-xl btn-primary custom-signup-button" (click)="navigateToSignup()">Sign up</button>
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
               </li>
             </ng-container>
             <ng-template #loggedInUser>
-              <li class="nav-item active">
-                <a class="nav-link" href="">Career <span class="sr-only">(current)</span></a>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+              </li>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+                <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="navigateToContact()">Contact</a>
+                <button class="custom-button" (click)="navigateToContact()">Contact </button>
               </li>
               <li class="nav-item">
-                <span class="nav-link">{{ getUserDisplayName() }}</span>
+                <button  class="custom-button">{{ getUserDisplayName() }}</button>
               </li>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <a class="nav-link" routerLink="/manage-account">Manage Account</a>
+                <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn-logout" (click)="logout()">Logout</a>
+                <button class="custom-button" (click)="logout()">Logout</button>
               </li>
 
             </ng-template>
@@ -245,7 +248,6 @@
       </nav>
     </div>
   </header>
-  <!-- Header Section End -->
 
   <!-- Slider Section Start -->
   <section class="slider_section">
@@ -290,7 +292,7 @@
           </div>
         </div>
         <div class="job-right my-4 flex-shrink-0">
-          <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light">Apply Now</a>
+          <a href="#" class="custom-button black-text">Apply Now</a>
         </div>
       </div>
       <div class="filter-result">
@@ -308,7 +310,7 @@
         </div>
 
         <div class="job-right my-4 flex-shrink-0">
-          <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light">Apply Now</a>
+          <a href="#" class="custom-button black-text">Apply Now</a>
       </div>
       </div>
     </div>

@@ -33,13 +33,15 @@ export class ContactComponent {
     const role = this.jwtService.getRole();
 
     if (role === 'admin') {
-      return 'Admin';
+      // @ts-ignore
+      return this.jwtService.getName();
     } else if (name) {
       return name;
     } else {
       return 'User';
     }
   }
+
 
   navigateToSignup() {
     this.router.navigate(['/signup']); // Navigate to the /signup route
@@ -91,4 +93,19 @@ export class ContactComponent {
 
   navigateToContact() {
     this.router.navigate(['/contact']);
-  }}
+  }
+
+  navigateToManageJobs() {
+    this.router.navigate(['/managejobs'])
+  }
+
+  navigateToManageAccount() {
+    this.router.navigate(['/manageaccount'])
+
+  }
+
+
+  navigateToJobs() {
+    this.router.navigate(['/jobs'])
+  }
+}

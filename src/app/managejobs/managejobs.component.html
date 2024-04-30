@@ -195,6 +195,7 @@
     <img src="/assets/images/slider-bg.jpg" alt="" />
   </div>
   <!-- Header Section Start -->
+
   <header class="header_section">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container">
@@ -205,37 +206,40 @@
           <ul class="navbar-nav">
             <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
               <li class="nav-item active">
-                <a class="nav-link"  (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></a>
+                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link btn-login" (click)="navigateToLogin()">Login</a>
+                <button class="custom-button" (click)="navigateToLogin()">Login</button>
               </li>
               <li class="nav-item">
-                <button class="btn bsb-btn-xl btn-primary custom-signup-button" (click)="navigateToSignup()">Sign up</button>
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
               </li>
             </ng-container>
             <ng-template #loggedInUser>
-              <li class="nav-item active">
-                <a class="nav-link" href="">Career <span class="sr-only">(current)</span></a>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+              </li>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+                <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="navigateToContact()">Contact</a>
+                <button class="custom-button" (click)="navigateToContact()">Contact </button>
               </li>
               <li class="nav-item">
-                <span class="nav-link">{{ getUserDisplayName() }}</span>
+                <button class="custom-button">{{ getUserDisplayName() }}</button>
               </li>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <a class="nav-link" routerLink="/manage-account">Manage Account</a>
+                <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn-logout" (click)="logout()">Logout</a>
+                <button class="custom-button" (click)="logout()">Logout</button>
               </li>
 
             </ng-template>
@@ -246,7 +250,6 @@
       </nav>
     </div>
   </header>
-  <!-- Header Section End -->
 
   <!-- Slider Section Start -->
   <section class="slider_section">
@@ -263,15 +266,10 @@
     </div>
   </section>
   <!-- Slider Section End -->
+</div><div style="margin-left: 50px">
+  <h1>Job Management</h1>
 </div>
 
-<div class="row">
-  <div class="col-lg-10 mx-auto mb-4">
-    <div class="section-title text-center ">
-      <h3 class="top-c-sep">Grow your career with us</h3>
-    </div>
-  </div>
-</div>
 <div class="row">
   <div class="col-lg-10 mx-auto">
     <div class="career-search mb-60">
@@ -281,6 +279,19 @@
       </div>
     </div>
     <div class="filter-result">
+      <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
+        <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+          <div class="job-content">
+            <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+              <li class="mr-md-4">Add a new job opening for your company.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job-right my-4 flex-shrink-0">
+          <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light">Add Job</a>
+        </div>
+      </div>
+
       <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let job of jobs">
         <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
           <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
@@ -288,25 +299,24 @@
           </div>
           <div class="job-content">
             <h5 class="text-center text-md-left">{{ job.name }}</h5>
-            <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+            <ul class="btn d-block w-100 d-sm-inline-block  mt-2">
               <li class="mr-md-4">{{ stripHtmlTags(job.description) }}</li>
             </ul>
           </div>
         </div>
         <div class="job-right my-4 flex-shrink-0">
-          <button class="btn btn-light" (click)="openModal(job)">Modify</button>
-          <a href="#" class="btn d-block w-100 d-sm-inline-block btn-danger mt-2">Delete Job</a>
+          <div class="button-wrapper">
+            <button class="custom-button black-text" (click)="openModal(job)">Modify</button>
+            <button class="custom-button2 black-text" (click)="deleteModal(job)" >    Delete Job</button>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
     <app-modifymodal [showModal]="showModal" (modalClosed)="showModal = false"></app-modifymodal>
-
-
-
+    <app-deletemodal [showModal2]="showModal2" (modalClosed)="showModal2 = false"></app-deletemodal>
   </div>
 </div>
-
 
 
 <!-- Info Section Start -->

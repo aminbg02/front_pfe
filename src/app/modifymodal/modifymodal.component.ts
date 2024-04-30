@@ -48,8 +48,7 @@ export class ModifyModalComponent implements OnInit,OnChanges {
               alert(response.message);
               localStorage.removeItem('selectedJob');
               this.showModal = false;
-              // Add logic to reload the jobs list or navigate to the jobs list page
-            }
+              this.router.navigate(['/managejobs']);            }
           },
           (error) => {
             console.error('Error updating job:', error);
@@ -61,10 +60,14 @@ export class ModifyModalComponent implements OnInit,OnChanges {
     }
   }
 
+
   ngOnChanges() {
     if (this.showModal) {
       this.selectedJobData = JSON.parse(localStorage.getItem('selectedJob') || '{}');
+      this.selectedJobData.description = this.selectedJobData.description.replace(/<p>/g, '').replace(/<\/p>/g, '');
     }
   }
+
+
 
 }

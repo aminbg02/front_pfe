@@ -1,1 +1,22 @@
-<p>deletemodal works!</p>
+<div class="modal" [ngClass]="{'show': showModal2}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <div class="modal-logo">
+          <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
+        </div>
+        <button type="button" class="close" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>ARE YOU SURE YOU ARE ABOUT TO DELETE THE JOB?</p>
+        <p>Job Name: {{ getSelectedJobName }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="custom-button" (click)="deleteJob()">Yes</button>
+        <button type="button" class="custom-button" (click)="closeModal()">No</button>
+      </div>
+    </div>
+  </div>
+</div>

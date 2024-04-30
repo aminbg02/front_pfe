@@ -1,4 +1,4 @@
-<!-- Header Section Start -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,37 +38,40 @@
           <ul class="navbar-nav">
             <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
               <li class="nav-item active">
-                <a class="nav-link"  (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></a>
+                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link btn-login" (click)="navigateToLogin()">Login</a>
+                <button class="custom-button" (click)="navigateToLogin()">Login</button>
               </li>
               <li class="nav-item">
-                <button class="btn bsb-btn-xl btn-primary custom-signup-button" (click)="navigateToSignup()">Sign up</button>
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
               </li>
             </ng-container>
             <ng-template #loggedInUser>
-              <li class="nav-item active">
-                <a class="nav-link" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></a>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+              </li>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+                <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
               </li>
               <li class="nav-item">
-                <a class="nav-link"    (click)="navigateToDivisons()"> Divisons</a>
+                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="navigateToContact()">Contact</a>
+                <button class="custom-button" (click)="navigateToContact()">Contact </button>
               </li>
               <li class="nav-item">
-                <span class="nav-link">{{ getUserDisplayName() }}</span>
+                <button class="custom-button">{{ getUserDisplayName() }}</button>
               </li>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <a class="nav-link" (click)="navigateToManageAccount()">Manage Account</a>
+                <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn-logout" (click)="logout()">Logout</a>
+                <button class="custom-button" (click)="logout()">Logout</button>
               </li>
 
             </ng-template>
@@ -212,23 +215,36 @@
             <div class="social_media">
               <div class="social_item">
                 <img src="assets/images/xing.png" alt="Social Media Image 1" />
-                <span>Xing</span>
+                <span (click)="redirectToWebpage('https://www.xing.com/pages/scheidt-bachmanngmbh')"
+                      (mouseenter)="setHoveredElement('xing')"
+                      (mouseleave)="setHoveredElement('')"
+                      [ngClass]="{'dark-yellow': hoveredElement === 'xing'}">Xing</span>
               </div>
               <div class="social_item">
                 <img src="assets/images/ln.png" alt="Social Media Image 2" />
-                <span>LinkedIn</span>
+                <span (click)="redirectToWebpage('https://www.linkedin.com/company/scheidt-&-bachmann')"
+                      (mouseenter)="setHoveredElement('linkedin')"
+                      (mouseleave)="setHoveredElement('')"
+                      [ngClass]="{'dark-yellow': hoveredElement === 'linkedin'}">LinkedIn</span>
               </div>
               <div class="social_item">
                 <img src="assets/images/ig.png" alt="Social Media Image 3" />
-                <span>Instagram </span>
+                <span (click)="redirectToWebpage('https://www.instagram.com/scheidtundbachmann_karriere/')"
+                      (mouseenter)="setHoveredElement('instagram')"
+                      (mouseleave)="setHoveredElement('')"
+                      [ngClass]="{'dark-yellow': hoveredElement === 'instagram'}">Instagram</span>
               </div>
               <div class="social_item">
                 <img src="assets/images/ig.png" alt="Social Media Image 4" />
-                <span>Instagram Parking Solutions </span>
+                <span (click)="redirectToWebpage('https://www.instagram.com/scheidtundbachmann_parking/')"
+                      (mouseenter)="setHoveredElement('instagramParking')"
+                      (mouseleave)="setHoveredElement('')"
+                      [ngClass]="{'dark-yellow': hoveredElement === 'instagramParking'}">Instagram Parking Solutions</span>
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-md-6 col-lg-3 info_col">
           <h4>Contact us</h4>
           <p>

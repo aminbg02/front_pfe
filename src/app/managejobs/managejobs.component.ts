@@ -19,9 +19,9 @@ export class ManagejobsComponent {
 
 
   @Input() showModal: boolean = false;
+  @Input() showModal2: boolean = false;
 
-  @Input() modalType: 'success' | 'error' = 'success';
-  @Input() modalMessage: string = '';
+
   @Output() modalClosed = new EventEmitter<void>();
   selectedJobData: any = {};
 
@@ -55,13 +55,15 @@ export class ManagejobsComponent {
     const role = this.jwtService.getRole();
 
     if (role === 'admin') {
-      return 'Admin';
+      // @ts-ignore
+      return this.jwtService.getName();
     } else if (name) {
       return name;
     } else {
       return 'User';
     }
   }
+
 
 
 
@@ -96,10 +98,26 @@ export class ManagejobsComponent {
     this.router.navigate(['/contact']);
   }
 
-
   openModal(job: any) {
     this.showModal = false;
     localStorage.setItem('selectedJob', JSON.stringify(job));
     this.showModal = true; }
+
+
+  deleteModal(job: any) {
+    this.showModal2 = false;
+    localStorage.setItem('selectedJob', JSON.stringify(job));
+    this.showModal2 = true;
+
+  }
+
+  navigateToManageJobs() {
+    this.router.navigate(['/managejobs'])
+  }
+
+  navigateToManageAccount() {
+    this.router.navigate(['/manageaccount'])
+
+  }
 
 }

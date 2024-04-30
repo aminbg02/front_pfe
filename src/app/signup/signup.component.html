@@ -1,6 +1,33 @@
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/registrations/registration-7/assets/css/registration-7.css">
-
+<style>
+  .bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .bg-image {
+    background-image: url('assets/images/parking.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    filter: blur(5px); /* Add a blur effect to the image */
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay */
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    margin: 0 20px;
+  }
+</style>
+<div class="bg-container">
+  <div class="bg-image"></div>
+</div>
 <section class="bg-light p-3 p-md-4 p-xl-5">
   <div class="container">
     <div class="row justify-content-center">
@@ -9,15 +36,27 @@
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="row">
               <div class="col-12">
-                <button  (click)="navigateToHomePage()" class="btn btn-primary">
-                  <i class="bi bi-arrow-return-left"  ></i>
+                <button (click)="navigateToHomePage()" class="btn btn-custom">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.02698 11.9929L5.26242 16.2426L6.67902 14.8308L4.85766 13.0033L22.9731 13.0012L22.9728 11.0012L4.85309 11.0033L6.6886 9.17398L5.27677 7.75739L1.02698 11.9929Z"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </button>
+                <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
+
                 <div class="mb-5">
                   <div class="text-center mb-4">
                   </div>
-                  <h2 class="h4 text-center">Registration</h2>
-                  <h3 class="fs-6 fw-normal text-secondary text-center m-0">Enter your details to register</h3>
-                </div>
+                  <h2 class="text-center m-0" style="color :gray ;  font-weight: bold; ">Registration </h2>
+                 </div>
               </div>
             </div>
             <form (ngSubmit)="onSubmit()">
@@ -43,7 +82,7 @@
 
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn bsb-btn-xl btn-primary" type="submit">Sign up</button>
+                    <button class="custom-button" type="submit">Sign up</button>
                   </div>
                 </div>
               </div>
