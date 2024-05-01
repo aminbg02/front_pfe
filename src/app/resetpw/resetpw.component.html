@@ -78,7 +78,7 @@
                 <span class="nav-link">{{ getUserDisplayName() }}</span>
               </li>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <a class="nav-link" routerLink="/manage-account">Manage Account</a>
+                <a class="nav-link" (click)="navigateToManageAccount()">Manage Account</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link btn-logout" (click)="logout()">Logout</a>
@@ -112,8 +112,8 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="contact-header">
-        <h2 class="text-center">Change Username</h2>
-        <p class="text-center">Update your Username Here</p>
+        <h2 class="text-center">Change Password</h2>
+        <p class="text-center">Update your Password Here</p>
       </div>
     </div>
   </div>

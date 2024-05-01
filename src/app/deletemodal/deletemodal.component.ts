@@ -11,21 +11,21 @@ export class DeletemodalComponent implements  OnInit{
   apiUrl = 'http://127.0.0.1:5000';
   @Input() showModal2: boolean = false;
   @Output() modalClosed = new EventEmitter<void>();
-
-
   selectedJobData: any = {};
+
 
   constructor(private router: Router, private http: HttpClient) { }
 
-
-
   ngOnInit() {
+
     if (localStorage.getItem('selectedJob')) {
+
       // @ts-ignore
       this.selectedJobData = JSON.parse(localStorage.getItem('selectedJob'));
       this.showModal2 = true;
     }
   }
+
 
   closeModal() {
     this.showModal2 = false;

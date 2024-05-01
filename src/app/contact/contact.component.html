@@ -151,13 +151,11 @@
 </div>
 
 <br><br><br><br>
-<app-modal
+<app-success-modal
   *ngIf="showSuccessModal"
   [showModal]="showSuccessModal"
-  [modalType]="'success'"
-  [modalMessage]="successMessage"
   (modalClosed)="showSuccessModal = false"
-></app-modal>
+></app-success-modal>
 
 <app-modal
   *ngIf="showErrorModal"

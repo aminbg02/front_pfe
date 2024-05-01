@@ -288,7 +288,7 @@
           </div>
         </div>
         <div class="job-right my-4 flex-shrink-0">
-          <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light">Add Job</a>
+          <a  class="custom-button3" (click)="openjobmodal()">Add Job</a>
         </div>
       </div>
 
@@ -307,14 +307,17 @@
         <div class="job-right my-4 flex-shrink-0">
           <div class="button-wrapper">
             <button class="custom-button black-text" (click)="openModal(job)">Modify</button>
-            <button class="custom-button2 black-text" (click)="deleteModal(job)" >    Delete Job</button>
+            <button class="custom-button2 black-text" (click)="deleteModal(job)">Delete Job</button>
           </div>
         </div>
 
       </div>
     </div>
+
     <app-modifymodal [showModal]="showModal" (modalClosed)="showModal = false"></app-modifymodal>
-    <app-deletemodal [showModal2]="showModal2" (modalClosed)="showModal2 = false"></app-deletemodal>
+    <app-deletemodal
+                     [showModal2]="showModal2"
+                     (modalClosed)="showModal2 = false"></app-deletemodal>
   </div>
 </div>
 
@@ -378,4 +381,56 @@
 
 </section>
 
+<div class="modal" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <div class="modal-logo">
+          <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
+        </div>
+        <button type="button" class="close" (click)="closeModal()">
+          <span (click)="closedelModal()">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>ARE YOU SURE YOU ARE ABOUT TO DELETE THE JOB? {{ getSelectedJobName() }} </p>
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="custom-button2" (click)="deleteJob()">Yes</button>
+        <button type="button" class="custom-button2" (click)="closedelModal()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="AddModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <div class="modal-logo">
+          <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
+        </div>
+        <button type="button" class="close" (click)="closejobModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="description" name="description" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="custom-button" (click)="closejobModal()">Close</button>
+        <button type="button" class="custom-button" (click)="addnewjob()">Save new job</button>
+      </div>
+    </div>
+  </div>
+</div>

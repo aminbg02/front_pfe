@@ -29,11 +29,9 @@ export class ChangeusernameComponent {
         .subscribe(
             response => {
               console.log(response);
-
             },
             error => {
               console.error('Error changing name:', error);
-
 
             }
         );

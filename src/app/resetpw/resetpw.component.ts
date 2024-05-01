@@ -67,24 +67,22 @@ export class ResetpwComponent {
       console.log('Password must be at least 8 characters long');
       return;
     }
-
     if (!(this.newPassword === this.confirmPassword)) {
       console.log('Passwords do not match');
       return;
     }
 
-    // Continue with the password change logic
     const email = this.jwtService.getEmail();
     if (email) {
-      const apiUrl = 'http://localhost:8069/changepassword';
+      const apiUrl = 'http://127.0.0.1:5000/changepassword';
       const payload = {
-        email: email,
+        email: this.jwtService.getEmail(),
         new_password: this.newPassword
       };
-      this.http.post(apiUrl, payload).subscribe(
+      this.http.post('http://127.0.0.1:5000/changepassword', payload).subscribe(
         (response: any) => {
           console.log(response.message);
-          this.router.navigate(['/homepage']);
+
         },
         (error) => {
           console.error('Error changing password:', error);
@@ -93,4 +91,7 @@ export class ResetpwComponent {
     }
   }
 
+  navigateToManageAccount() {
+    this.router.navigate(['/manageaccount']);
+  }
 }

@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JwtService} from "../services/jwt.service";
 import {ModifyModalComponent} from "../modifymodal/modifymodal.component";
+import {jwtDecode} from "jwt-decode";
 
 @Component({
   selector: 'app-managejobs',
@@ -10,17 +11,22 @@ import {ModifyModalComponent} from "../modifymodal/modifymodal.component";
   styleUrls: ['./managejobs.component.css']
 })
 
-export class ManagejobsComponent {
+export class ManagejobsComponent implements OnInit {
+
 
   constructor(private http: HttpClient,private router: Router, public jwtService: JwtService) { }
 
   jobs: any[] = [];
-  private apiUrl = 'http://127.0.0.1:5000';
+  name: string = '';
+  id: string='';
+  description: string = '';
+  managerId: number = 0;
+  apiUrl = 'http://127.0.0.1:5000';
 
 
   @Input() showModal: boolean = false;
-  @Input() showModal2: boolean = false;
 
+  @Input() showModal2: boolean = false;
 
   @Output() modalClosed = new EventEmitter<void>();
   selectedJobData: any = {};
@@ -29,7 +35,10 @@ export class ManagejobsComponent {
 
   ngOnInit() {
     this.fetchJobData();
+    this.showModal2 = false;
     this.selectedJobData = JSON.parse(localStorage.getItem('selectedJob') || '{}');
+    // @ts-ignore
+    this.managerId=this.jwtService.getID()
   }
   closeModal() {
     this.showModal = false;
@@ -62,6 +71,17 @@ export class ManagejobsComponent {
     } else {
       return 'User';
     }
+  }
+
+
+  getID(): number | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const tokenDecoded = jwtDecode(token);
+      // @ts-ignore
+      return tokenDecoded.sub.user_id;
+    }
+    return null;
   }
 
 
@@ -99,15 +119,27 @@ export class ManagejobsComponent {
   }
 
   openModal(job: any) {
-    this.showModal = false;
+
     localStorage.setItem('selectedJob', JSON.stringify(job));
-    this.showModal = true; }
+    this.showModal = true;
+  }
 
 
   deleteModal(job: any) {
-    this.showModal2 = false;
     localStorage.setItem('selectedJob', JSON.stringify(job));
-    this.showModal2 = true;
+
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    { modelDiv.style.display="block"}
+
+  }
+
+  closedelModal() {
+
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    {  localStorage.removeItem('selectedJob');
+      modelDiv.style.display="none"}
 
   }
 
@@ -120,4 +152,92 @@ export class ManagejobsComponent {
 
   }
 
+  getSelectedJobName(): string {
+    // @ts-ignore
+    const selectedJobData = JSON.parse(localStorage.getItem('selectedJob'));
+    if (selectedJobData) {
+      return selectedJobData.name;
+    } else {
+      return '';
+    }
+  }
+
+  addnewjob() {
+    const url = 'http://127.0.0.1:5000/addnewjob';
+    const body = {
+      name: this.name,
+      description: this.description,
+      id: this.managerId
+    };
+
+    this.http.post(url, body).subscribe(
+      (response: any) => {
+        if (response.message === 'Job created') {
+          alert('New job created successfully');
+        } else if (response.message === 'Job already exists') {
+          alert('Job already exists');
+        } else if (response.message === 'Error while creating job') {
+          alert('Error occurred while creating job');
+        } else if (response.message === 'Error while authenticating') {
+          alert('Error while authenticating');
+        }
+      },
+      (error) => {
+        console.error('Error creating job:', error);
+        alert('Error creating job. Please try again.');
+      }
+    );
+  }
+
+
+  deleteJob(): void {
+    const url = 'http://127.0.0.1:5000/deletejob';
+    const idJ = this.selectedJobData.id;
+    if (this.selectedJobData && this.selectedJobData.id) {
+      const url = `${this.apiUrl}/deletejob`;
+      const body = {
+        id: idJ,
+        manager_id: this.managerId
+      };
+
+
+      this.http.post(url, body).subscribe(
+        (response: any) => {
+          if (response.message) {
+            if (response.message === 'Deletion successful') {
+              alert('Job successfully deleted');
+            } else if (response.message === 'Error while deleting job') {
+              alert('Error occurred while deleting job');
+            } else if (response.message === 'Unauthorized to delete this job') {
+              alert('Unauthorized to delete this job');
+            } else if (response.message === 'Job not found') {
+              alert('Job not found');
+            } else if (response.message === 'Error while authenticating') {
+              alert('Error while authenticating');
+            }
+
+          }
+        },
+        (error) => {
+          console.error('Error deleting job:', error);
+          alert('Error deleting job. Please try again.');
+        }
+      );
+    }
+
+  }
+
+  openjobmodal() {
+    const modelDiv = document.getElementById('AddModal')
+    if ( modelDiv!=null)
+    { modelDiv.style.display="block"}
+  }
+
+  closejobModal() {
+
+    const modelDiv = document.getElementById('AddModal')
+    if ( modelDiv!=null)
+    {  localStorage.removeItem('selectedJob');
+      modelDiv.style.display="none"}
+  }
 }

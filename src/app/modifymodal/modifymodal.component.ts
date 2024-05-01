@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import {JwtService} from "../services/jwt.service";
 
 
 @Component({
@@ -14,12 +15,14 @@ export class ModifyModalComponent implements OnInit,OnChanges {
   @Input() showModal: boolean = false;
   @Output() modalClosed = new EventEmitter<void>();
 
-
+  managerId: number = 0;
   selectedJobData: any = {};
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient , private jwtService :JwtService) { }
 
   ngOnInit() {
+    // @ts-ignore
+    this.managerId =this.jwtService.getID()
     if (localStorage.getItem('selectedJob')) {
     // @ts-ignore
     this.selectedJobData = JSON.parse(localStorage.getItem('selectedJob'));
@@ -39,7 +42,8 @@ export class ModifyModalComponent implements OnInit,OnChanges {
       const body = {
         id: this.selectedJobData.id,
         name: this.selectedJobData.name,
-        description: this.selectedJobData.description
+        description: this.selectedJobData.description,
+        manager_id: this.managerId
       };
 
       this.http.post(url, body).subscribe(

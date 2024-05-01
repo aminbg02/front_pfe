@@ -31,6 +31,19 @@ export class JwtService {
     return null;
   }
 
+  getID(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const tokenDecoded = jwtDecode(token);
+      // @ts-ignore
+      return tokenDecoded.sub.user_id;
+    }
+    return null;
+  }
+
+
+
+
   getEmail(): string | null {
     const token = localStorage.getItem('token');
     if (token) {
