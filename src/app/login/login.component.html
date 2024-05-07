@@ -94,6 +94,9 @@
               <p class="m-0 text-secondary text-center">Don't have an account yet?
                 <a class="link-primary text-decoration-none" (click)="navigateToSignIn()">Sign Up</a>
               </p>
+              <p class="m-0 text-secondary text-center">Forgot Your Password?
+                <a class="link-primary text-decoration-none" (click)="resetPW()">Press Here & Check Your Email</a>
+              </p>
             </div>
           </div>
           <app-error-modal [showModal]="showErrorModal" [errorMessage]="errorMessage" (modalClosed)="showErrorModal = false"></app-error-modal>

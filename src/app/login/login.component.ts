@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ErrorModalComponent} from "../error-modal/error-modal.component";
 import { SuccessModalComponent } from '../success-modal/success-modal.component';
 
@@ -24,9 +24,10 @@ export class LoginComponent {
   showErrorModal: boolean = false;
   errorMessage: string = '';
   showSuccessModal: boolean = false;
+  private apiUrl = 'http://127.0.0.1:5000';
 
 
-  constructor(private router: Router ,private authService: AuthService) { }
+  constructor(private router: Router ,private authService: AuthService , private http:HttpClient) { }
   private decodeToken(token: string): any {
     const base64Payload = token.split('.')[1];
     const payload = window.atob(base64Payload);
@@ -84,5 +85,20 @@ export class LoginComponent {
   }
 
 
+  resetPW() {
+
+
+    // @ts-ignore
+    this.http.post('http://127.0.0.1:5000/changepassword2', { email:this.email})
+      .subscribe(
+        (response: any) => {
+          console.log(response.message);
+        },
+        (error: any) => {
+          console.log(this.email)
+          console.error('Error changing password2:', error);
+        }
+      );
+  }
 }
 

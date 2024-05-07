@@ -1,0 +1,21 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Chatbot</h2>
+  </div>
+
+  <div class="chat-body">
+    <div class="chat-history">
+      <div class="message" *ngFor="let message of chatHistory">
+        <div class="message-content" [ngClass]="{'user-message': message.user === 'user', 'bot-message': message.user === 'bot'}">
+          <p>{{ message.text }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" [(ngModel)]="userQuery" placeholder="Type your query..." (keyup.enter)="sendQuery()">
+      <button (click)="sendQuery()">Send</button>
+    </div>
+  </div>
+</div>
+

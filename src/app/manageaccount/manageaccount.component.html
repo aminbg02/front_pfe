@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Management</title>
+
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <!-- Additional CSS -->
@@ -13,11 +14,35 @@
       position: absolute;
       top: 20px;
       left: 20px;
-    }
+
+      .bg-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+      }
+      .bg-image {
+        background-image: url('assets/images/parking.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        filter: blur(5px); /* Add a blur effect to the image */
+        background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay */
+      }
+
+
   </style>
 </head>
 <body>
+
+
 <section class="bg-light p-3 p-md-4 p-xl-5">
+  <div class="bg-container">
+    <div class="bg-image"></div>
+  </div>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
@@ -28,27 +53,41 @@
                 <div class="mb-5">
                   <div class="text-center mb-4"></div>
                   <button (click)="navigateToHomePage()" class="btn btn-primary back-button">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.02698 11.9929L5.26242 16.2426L6.67902 14.8308L4.85766 13.0033L22.9731 13.0012L22.9728 11.0012L4.85309 11.0033L6.6886 9.17398L5.27677 7.75739L1.02698 11.9929Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+
                     <i class="bi bi-arrow-return-left"></i>
                   </button>
-                  <h2 class="h4 text-center">Account Management</h2>
-                  <h3 class="fs-6 fw-normal text-secondary text-center m-0">Update your account details</h3>
+                  <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
+                  <h2 class="text-center m-0" style="color :gray ; font-weight: bold">Account Management</h2>
+
                 </div>
               </div>
             </div>
             <div class="row gy-3">
               <div class="col-12">
                 <div class="d-grid">
-                  <button class="btn btn-primary" (click)="changeEmail()">Change Email</button>
+                  <button class="custom-button" (click)="changeEmail()">Change Email</button>
                 </div>
               </div>
               <div class="col-12">
                 <div class="d-grid">
-                  <button class="btn btn-primary" (click)="changeUsername()">Change Username</button>
+                  <button class="custom-button" (click)="changeUsername()">Change Username</button>
                 </div>
               </div>
               <div class="col-12">
                 <div class="d-grid">
-                  <button class="btn btn-primary" (click)="resetPassword()">Reset Password</button>
+                  <button class="custom-button" (click)="resetPassword()">Reset Password</button>
                 </div>
               </div>
             </div>
