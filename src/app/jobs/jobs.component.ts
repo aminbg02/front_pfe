@@ -3,6 +3,17 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JwtService} from "../services/jwt.service";
 import {jwtDecode} from "jwt-decode";
+// @ts-ignore
+import jsPDF, {jspdf} from 'jspdf'
+
+// @ts-ignore
+import pdfMake from 'pdfmake/build/pdfmake';
+// @ts-ignore
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 @Component({
   selector: 'app-jobs',
@@ -263,8 +274,44 @@ export class JobsComponent implements OnInit {
     }
     // Disable the radio buttons for this question
     this.isAnswerDisabled[questionIndex] = true;
+  }
+  generatePdf() {
+    const doc = new jsPDF();
+    const name = this.jwtService.getName();
+    const email = this.jwtService.getEmail();
+    const selectedJobString = localStorage.getItem('selectedJob');
+    // @ts-ignore
+    const job = selectedJobString.name;
+    // Calculate the position for the image to be at the middle of the page on the first line
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const imageWidth = 150; // Adjust as needed
+    const xPosition = (pageWidth - imageWidth) / 2;
+    const yPosition = 10; // Adjust as needed
 
-  }}
+    // Add the image at the calculated position
+    doc.addImage('assets/images/s&b1.png', 'PNG', xPosition, yPosition, imageWidth, 50);
+
+    // Set font size and style for name and email
+    doc.setFontSize(14);
+
+
+    // Calculate the position for name and email
+    const nameX = 10;
+    const nameY = 80;
+    const emailX = 10;
+    const emailY = 90;
+
+    // Add name and email to the PDF
+    doc.text(`Name: ${name}`, nameX, nameY);
+    doc.text(`Email: ${email}`, emailX, emailY);
+
+    // Save the PDF
+    doc.save("trial.pdf");
+  }
+
+
+
+}
 
 
 
