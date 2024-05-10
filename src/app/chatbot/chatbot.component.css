@@ -8,7 +8,7 @@
 }
 
 .chat-header {
-  background-color: #4CAF50;
+  background-color: #fdc300;
   color: #fff;
   padding: 20px;
   border-top-left-radius: 10px;
@@ -47,7 +47,7 @@
 }
 
 .bot-message {
-  background-color: #4CAF50;
+  background-color: #8B8000;
   color: #fff;
   align-self: flex-start;
 }
@@ -71,7 +71,7 @@
   height: 40px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #fdc300;
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -79,5 +79,5 @@
 }
 
 .chat-input button:hover {
-  background-color: #45a049;
+  background-color: #fdc300;
 }

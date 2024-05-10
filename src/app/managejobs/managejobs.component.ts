@@ -20,7 +20,8 @@ export class ManagejobsComponent implements OnInit {
   name: string = '';
   id: string='';
   description: string = '';
-  managerId: number = 0;
+  // @ts-ignore
+  managerId: number ;
   apiUrl = 'http://127.0.0.1:5000';
 
 
@@ -191,15 +192,14 @@ export class ManagejobsComponent implements OnInit {
 
 
   deleteJob(): void {
-    const url = 'http://127.0.0.1:5000/deletejob';
-    const idJ = this.selectedJobData.id;
+    console.log("zz")
+     const idJ = this.selectedJobData.id;
     if (this.selectedJobData && this.selectedJobData.id) {
       const url = `${this.apiUrl}/deletejob`;
       const body = {
         id: idJ,
         manager_id: this.managerId
       };
-
 
       this.http.post(url, body).subscribe(
         (response: any) => {

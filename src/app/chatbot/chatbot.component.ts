@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 
@@ -8,18 +7,19 @@ import { ChatService } from '../services/chat.service';
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent {
-
   userQuery: string = '';
   botResponse: string = '';
   chatHistory: any[] = [];
+  userInputHistory: string[] = [];
 
   constructor(private chatService: ChatService) { }
 
   sendQuery() {
-    // @ts-ignore
     this.chatService.getBotResponse(this.userQuery).subscribe(response => {
       this.botResponse = response.result;
+      this.chatHistory.push({ user: 'user', text: this.userQuery });
       this.chatHistory.push({ user: 'bot', text: this.botResponse });
+      this.userInputHistory.push(this.userQuery);
       this.userQuery = ''; // Clear user input after sending query
     });
   }

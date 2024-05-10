@@ -292,7 +292,7 @@
           </div>
         </div>
         <div class="job-right my-4 flex-shrink-0">
-          <a href="#" class="custom-button black-text">Apply Now</a>
+          <a  class="custom-button black-text" (click)="ApplyModal()">Apply Now</a>
         </div>
       </div>
       <div class="filter-result">
@@ -308,9 +308,8 @@
             </ul>
           </div>
         </div>
-
         <div class="job-right my-4 flex-shrink-0">
-          <a href="#" class="custom-button black-text">Apply Now</a>
+          <a  class="custom-button black-text"   (click)="ApplyForJob(job)">Apply Now</a>
       </div>
       </div>
     </div>
@@ -376,4 +375,68 @@
     </div>
   </section>
   <!-- Info Section End -->
+
+
+
+
+
+
+
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Job Application</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <input type="file" class="file-upload" (change)="onFileChange($event)" #fileUpload>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="custom-button2" (click)="closedelModal()">No</button>
+            <button type="button" class="custom-button" (click)="submitApplication()">Submit</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Job Application!</h4>
+        <button (click)="closejobmodal()"type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Button to trigger data retrieval -->
+        <button (click)="Getdata()" class="btn btn-primary">Fetch Data</button>
+
+        <!-- Display questions and answers dynamically -->
+        <div *ngIf="response && response.data">
+          <div *ngFor="let question of response.data">
+            <h5>{{ question?.question }}</h5>
+            <div *ngFor="let answer of question?.answers">
+              <input type="radio" [value]="answer?.is_correct ? 1 : 0" name="{{ question?.id }}" id="{{ answer?.id }}">
+              <label for="{{ answer?.id }}">{{ answer?.value }}</label>
+            </div>
+            <hr>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
