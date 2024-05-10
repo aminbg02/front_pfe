@@ -408,7 +408,6 @@
       </div>
     </div>
 
-
 <div class="modal" id="myModal2">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -421,15 +420,20 @@
 
         <!-- Display questions and answers dynamically -->
         <div *ngIf="response && response.data">
-          <div *ngFor="let question of response.data">
+          <div *ngFor="let question of response.data; let i = index">
             <h5>{{ question.question }}</h5>
             <div *ngFor="let answer of question.answers">
-              <input type="radio" [value]="answer.is_correct ? 1 : 0" name="{{ question.id }}" id="{{ answer.id }}">
-              <label for="{{ answer.id }}">{{ answer.value }}</label>
+              <input (click)="updateScore(answer.is_correct, i)" type="radio" [value]="answer.is_correct ? 1 : 0" [name]="'question_' + i" [id]="'question_' + i + '_' + answer.id" [disabled]="isAnswerDisabled[i]">
+              <label [for]="'question_' + i + '_' + answer.id">{{ answer.value }}</label>
             </div>
             <hr>
           </div>
         </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="submitApplication2()">Submit Application</button>
+        <button type="button" class="btn btn-secondary" (click)="closejobmodal()">Close</button>
       </div>
     </div>
   </div>

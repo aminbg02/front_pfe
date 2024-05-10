@@ -10,14 +10,18 @@ import {jwtDecode} from "jwt-decode";
   styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
+
   jobs: any[] = [];
+
   private apiUrl = 'http://127.0.0.1:5000';
   selectedJob: any; // Assuming this variable holds the selected job from local storage
   questionsData: any[] = [];
-
+  score =0;
   fileName = '';
   // @ts-ignore
   response: (NgIterable<unknown> & NgIterable<any>) | undefined | null;
+  // @ts-ignore
+  score: number;
   ngOnInit() {
     this.fetchJobData();
 
@@ -123,8 +127,7 @@ export class JobsComponent implements OnInit {
      if ( modelDiv!=null)
      {  localStorage.removeItem('selectedJob');
        modelDiv.style.display="none"}
-
-
+     this.score=0;
    }
   onFileChange(event: any) {
     const file: File = event.target.files[0];
@@ -245,7 +248,23 @@ export class JobsComponent implements OnInit {
 
 
 
-}
+
+  // @ts-ignore
+  submitApplication2() {
+    console.log(this.score)
+
+  }
+
+  isAnswerDisabled: boolean[] = [];
+  // @ts-ignore
+  updateScore(isCorrect: boolean, questionIndex: number) {
+    if (isCorrect) {
+      this.score=this.score+1;
+    }
+    // Disable the radio buttons for this question
+    this.isAnswerDisabled[questionIndex] = true;
+
+  }}
 
 
 

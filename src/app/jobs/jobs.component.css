@@ -822,3 +822,39 @@ a:focus {
 .custom-button2:active {
   transform: translateY(-1px);
 }
+
+/* CSS for Modal Form */
+.modal-content {
+  padding: 20px;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+h5 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+label {
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
