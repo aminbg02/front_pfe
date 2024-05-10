@@ -104,6 +104,9 @@ export class JobsComponent implements OnInit {
     const modelDiv = document.getElementById('myModal')
     if ( modelDiv!=null)
     { modelDiv.style.display="block"}
+
+
+
   }
 
   closedelModal() {
@@ -171,14 +174,34 @@ export class JobsComponent implements OnInit {
       console.error('No file selected.');
       // Add logic to inform the user to select a file
     }}
-
+  // @ts-ignore
+  response: any; // Define response variable to hold the data
   ApplyForJob(job: any) {
     localStorage.setItem('selectedJob', JSON.stringify(job));
+    const selectedJobString = localStorage.getItem('selectedJob');
+    const selectedJob = JSON.parse(selectedJobString || '{}'); // Parse with fallback to empty object
     const modelDiv = document.getElementById('myModal2')
-    if ( modelDiv!=null)
-    { modelDiv.style.display="block"}
-  }
+    try {
+      setTimeout(() => {
+        if (modelDiv != null) {
+          modelDiv.style.display = "block";
+        }
+      }, 40000); // 40 seconds in milliseconds
+      const body = { name: selectedJob.name };
 
+      this.http.post("http://127.0.0.1:5000/aaa", body).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.response = response; // Assign response to the variable
+        },
+        (error) => {
+          console.error('Error occurred during POST request:', error);
+        }
+      );
+    } catch (error) {
+      console.error('Error parsing job information:', error);
+    }
+  }
 
 
 

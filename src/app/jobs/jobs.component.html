@@ -409,31 +409,27 @@
     </div>
 
 
-
-<!-- The Modal -->
 <div class="modal" id="myModal2">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Job Application!</h4>
-        <button (click)="closejobmodal()"type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button (click)="closejobmodal()" type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <!-- Button to trigger data retrieval -->
-        <button (click)="Getdata()" class="btn btn-primary">Fetch Data</button>
 
         <!-- Display questions and answers dynamically -->
         <div *ngIf="response && response.data">
           <div *ngFor="let question of response.data">
-            <h5>{{ question?.question }}</h5>
-            <div *ngFor="let answer of question?.answers">
-              <input type="radio" [value]="answer?.is_correct ? 1 : 0" name="{{ question?.id }}" id="{{ answer?.id }}">
-              <label for="{{ answer?.id }}">{{ answer?.value }}</label>
+            <h5>{{ question.question }}</h5>
+            <div *ngFor="let answer of question.answers">
+              <input type="radio" [value]="answer.is_correct ? 1 : 0" name="{{ question.id }}" id="{{ answer.id }}">
+              <label for="{{ answer.id }}">{{ answer.value }}</label>
             </div>
             <hr>
           </div>
         </div>
-
       </div>
     </div>
   </div>
