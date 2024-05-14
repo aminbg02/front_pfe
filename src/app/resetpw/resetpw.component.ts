@@ -89,9 +89,19 @@ export class ResetpwComponent {
         }
       );
     }
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    { modelDiv.style.display="block"}
   }
 
   navigateToManageAccount() {
     this.router.navigate(['/manageaccount']);
+  }
+
+  closemodal() {
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
   }
 }

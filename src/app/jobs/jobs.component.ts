@@ -33,9 +33,11 @@ export class JobsComponent implements OnInit {
   response: (NgIterable<unknown> & NgIterable<any>) | undefined | null;
   // @ts-ignore
   score: number;
+  submitted: boolean = false;
+
+
   ngOnInit() {
     this.fetchJobData();
-
   }
   constructor(private http: HttpClient,private router: Router, public jwtService: JwtService) { }
 
@@ -140,6 +142,15 @@ export class JobsComponent implements OnInit {
        modelDiv.style.display="none"}
      this.score=0;
    }
+  closejobmodal2()
+  {
+    const modelDiv = document.getElementById('myModal2')
+    if ( modelDiv!=null)
+    {  localStorage.removeItem('selectedJob');
+      modelDiv.style.display="none"}
+    this.score=0;
+    this.submitted=false;
+  }
   onFileChange(event: any) {
     const file: File = event.target.files[0];
     // @ts-ignore
@@ -281,35 +292,98 @@ export class JobsComponent implements OnInit {
     const email = this.jwtService.getEmail();
     const selectedJobString = localStorage.getItem('selectedJob');
     // @ts-ignore
-    const job = selectedJobString.name;
-    // Calculate the position for the image to be at the middle of the page on the first line
+    const selectedJob = JSON.parse(selectedJobString);
+    const job = selectedJob.name;
+
     const pageWidth = doc.internal.pageSize.getWidth();
-    const imageWidth = 150; // Adjust as needed
+    const imageWidth = 150;
     const xPosition = (pageWidth - imageWidth) / 2;
-    const yPosition = 10; // Adjust as needed
+    const yPosition = 10;
+    const currentDate = new Date();
 
-    // Add the image at the calculated position
+    // Get the current date in YYYY-MM-DD format
+    const year = currentDate.getFullYear();
+    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    const day = ('0' + currentDate.getDate()).slice(-2);
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // Get the current time in HH:MM:SS format
+    const hours = ('0' + currentDate.getHours()).slice(-2);
+    const minutes = ('0' + currentDate.getMinutes()).slice(-2);
+    const seconds = ('0' + currentDate.getSeconds()).slice(-2);
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+
     doc.addImage('assets/images/s&b1.png', 'PNG', xPosition, yPosition, imageWidth, 50);
-
-    // Set font size and style for name and email
     doc.setFontSize(14);
 
-
-    // Calculate the position for name and email
     const nameX = 10;
     const nameY = 80;
     const emailX = 10;
     const emailY = 90;
+    const dateTimeX = 10;
+    const dateTimeY = 100;
+    const jobX = 10;
+    const jobY = 110;
 
-    // Add name and email to the PDF
     doc.text(`Name: ${name}`, nameX, nameY);
     doc.text(`Email: ${email}`, emailX, emailY);
+    doc.text(`Date: ${formattedDate}`, dateTimeX, dateTimeY);
+    doc.text(`Selected Job: ${job}`, jobX, jobY);
 
-    // Save the PDF
-    doc.save("trial.pdf");
+    // Open the PDF in a new browser tab
+    doc.output('dataurlnewwindow');
   }
 
 
+
+
+  onSubmitForm() {
+    // Get the selected job from localStorage
+    const selectedJobString = localStorage.getItem('selectedJob');
+
+    // Parse the selected job
+    // @ts-ignore
+    const selectedJob = JSON.parse(selectedJobString);
+
+    // Get the user's email and name from the JwtService
+    const userEmail = this.jwtService.getEmail();
+    const userName = this.jwtService.getName();
+
+    // Get the PDF file from the file input
+
+    // Create a FormData object
+    const formData = new FormData();
+// @ts-ignore
+    formData.append('pdf_file', this.pdfFile);
+    // @ts-ignore
+    formData.append('partner_name', userName);
+    // @ts-ignore
+    formData.append('email', userEmail);
+    formData.append('description', this.score.toString());
+    formData.append('job_id', selectedJob.id.toString());
+    formData.append('name', selectedJob.name);
+    this.submitted = true;
+    // Make the HTTP POST request to the API
+    this.http.post('http://127.0.0.1:5000/applyforjob', formData)
+      .subscribe(
+        (response) => {
+          const doc = new jsPDF();
+          const name = this.jwtService.getName();
+          const email = this.jwtService.getEmail();
+          const selectedJobString = localStorage.getItem('selectedJob');
+          // @ts-ignore
+
+          // Handle successful response
+          console.log('Application submitted successfully');
+
+        },
+        (error) => {
+          // Handle error
+          console.error('Error submitting application:', error);
+        }
+      );
+
+  }
 
 }
 

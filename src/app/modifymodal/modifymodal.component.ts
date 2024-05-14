@@ -52,6 +52,10 @@ export class ModifyModalComponent implements OnInit,OnChanges {
               alert(response.message);
               localStorage.removeItem('selectedJob');
               this.showModal = false;
+
+              const modelDiv = document.getElementById('myModal0')
+              if ( modelDiv!=null)
+              { modelDiv.style.display="block"}
               this.router.navigate(['/managejobs']);            }
           },
           (error) => {
@@ -72,6 +76,11 @@ export class ModifyModalComponent implements OnInit,OnChanges {
     }
   }
 
-
+  closemodal() {
+    const modelDiv = document.getElementById('myModal0')
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
+  }
 
 }

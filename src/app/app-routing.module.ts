@@ -12,6 +12,7 @@ import {ResetpwComponent} from "./resetpw/resetpw.component";
 import {ChangeusernameComponent} from  "./changeusername/changeusername.component"
 import {ChangeemailComponent} from "./changeemail/changeemail.component"
 import {ChatbotComponent} from "./chatbot/chatbot.component";
+import {ManageusersComponent} from "./manageusers/manageusers.component";
 
 
 const routes: Routes = [
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'changeusername', component: ChangeusernameComponent },
   { path: 'changeemail', component: ChangeemailComponent },
   { path: 'chatbot', component: ChatbotComponent },
+  { path: 'manageusers', component: ManageusersComponent },
+
 
 ];
 

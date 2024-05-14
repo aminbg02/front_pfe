@@ -174,7 +174,13 @@ export class ManagejobsComponent implements OnInit {
     this.http.post(url, body).subscribe(
       (response: any) => {
         if (response.message === 'Job created') {
-          alert('New job created successfully');
+
+          const modelDiv = document.getElementById('myModal00');
+          if ( modelDiv!=null)
+          { modelDiv.style.display="block"}
+          const modelDiv2 = document.getElementById('AddModal');
+          if ( modelDiv2!=null)
+          { modelDiv2.style.display="none"}
         } else if (response.message === 'Job already exists') {
           alert('Job already exists');
         } else if (response.message === 'Error while creating job') {
@@ -192,7 +198,6 @@ export class ManagejobsComponent implements OnInit {
 
 
   deleteJob(): void {
-    console.log("zz")
      const idJ = this.selectedJobData.id;
     if (this.selectedJobData && this.selectedJobData.id) {
       const url = `${this.apiUrl}/deletejob`;
@@ -206,6 +211,12 @@ export class ManagejobsComponent implements OnInit {
           if (response.message) {
             if (response.message === 'Deletion successful') {
               alert('Job successfully deleted');
+              const modelDiv = document.getElementById('myModal000')
+              if ( modelDiv!=null)
+                modelDiv.style.display="block" ;
+              const modelDiv0 = document.getElementById('myModal')
+              // @ts-ignore
+              modelDiv0.style.display="none";
             } else if (response.message === 'Error while deleting job') {
               alert('Error occurred while deleting job');
             } else if (response.message === 'Unauthorized to delete this job') {
@@ -238,6 +249,13 @@ export class ManagejobsComponent implements OnInit {
     const modelDiv = document.getElementById('AddModal')
     if ( modelDiv!=null)
     {  localStorage.removeItem('selectedJob');
+      modelDiv.style.display="none"}
+  }
+
+  closemodal() {
+    const modelDiv = document.getElementById('myModal00')
+    if ( modelDiv!=null)
+    {
       modelDiv.style.display="none"}
   }
 }

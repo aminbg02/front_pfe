@@ -30,6 +30,10 @@ export class ChangeemailComponent {
 
                 }
             );
+      const modelDiv = document.getElementById('myModal')
+      if ( modelDiv!=null)
+      { modelDiv.style.display="block"}
+
     }
 
     getUserDisplayName(): string {
@@ -82,7 +86,19 @@ export class ChangeemailComponent {
 
   navigateToManageAccount() {
     this.router.navigate(['/manageaccount'])
+  }
+  modal()
+  {
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    { modelDiv.style.display="block"}
+  }
 
+  closemodal() {
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
   }
 }
 

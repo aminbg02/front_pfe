@@ -292,7 +292,7 @@
           </div>
         </div>
         <div class="job-right my-4 flex-shrink-0">
-          <button (click)="generatePdf()"></button>
+
           <a  class="custom-button black-text" (click)="ApplyModal()">Apply Now</a>
         </div>
       </div>
@@ -416,28 +416,31 @@
         <h4 class="modal-title">Job Application!</h4>
         <button (click)="closejobmodal()" type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
-        <!-- Button to trigger data retrieval -->
-
-        <!-- Display questions and answers dynamically -->
-        <div *ngIf="response && response.data">
-          <div *ngFor="let question of response.data; let i = index">
-            <h5>{{ question.question }}</h5>
-            <div *ngFor="let answer of question.answers">
-              <input (click)="updateScore(answer.is_correct, i)" type="radio" [value]="answer.is_correct ? 1 : 0" [name]="'question_' + i" [id]="'question_' + i + '_' + answer.id" [disabled]="isAnswerDisabled[i]">
-              <label [for]="'question_' + i + '_' + answer.id">{{ answer.value }}</label>
+      <form >
+        <div class="modal-body">
+          <!-- Display questions and answers dynamically -->
+          <div *ngIf="response && response.data">
+            <div *ngFor="let question of response.data; let i = index">
+              <h5>{{ question.question }}</h5>
+              <div *ngFor="let answer of question.answers">
+                <input (click)="updateScore(answer.is_correct, i)" type="radio" [value]="answer.is_correct ? 1 : 0" [name]="'question_' + i" [id]="'question_' + i + '_' + answer.id" [disabled]="isAnswerDisabled[i]">
+                <label [for]="'question_' + i + '_' + answer.id">{{ answer.value }}</label>
+              </div>
+              <hr>
             </div>
-            <hr>
           </div>
         </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="submitApplication2()">Submit Application</button>
-        <button type="button" class="btn btn-secondary" (click)="closejobmodal()">Close</button>
-      </div>
+        <div class="modal-footer">
+          <button  type="submit" class="btn btn-primary" (click)="onSubmitForm()">Submit Application</button>
+          <button type="button" class="btn btn-secondary" (click)="closejobmodal2()">Close</button>
+          <button *ngIf="submitted" class="btn btn-primary" (click)="generatePdf()">Click Here To Receive a Receipt</button>
+        </div>
+          <input type="file" class="file-upload" (change)="onFileChange($event)" #fileUpload>
+      </form>
     </div>
   </div>
 </div>
+
 
 

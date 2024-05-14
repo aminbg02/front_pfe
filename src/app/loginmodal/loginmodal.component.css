@@ -21,3 +21,8 @@
 .modal.show {
   display: block;
 }
+
+
+.logo{
+  margin-left: 100px;
+}

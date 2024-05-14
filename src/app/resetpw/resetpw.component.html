@@ -113,7 +113,7 @@
     <div class="col-md-8">
       <div class="contact-header">
         <h2 class="text-center">Change Password</h2>
-        <p class="text-center">Update your Password Here</p>
+
       </div>
     </div>
   </div>
@@ -130,8 +130,7 @@
           <label for="confirmPassword">Confirm Password:</label>
           <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" [(ngModel)]="confirmPassword" required>
         </div>
-        <button type="submit" class="custom-button">Submit</button>
-      </form>
+        <button type="submit" class="custom-button">Submit</button>      </form>
     </div>
   </div>
   </div>
@@ -196,4 +195,32 @@
     </div>
   </div>
 </section>
+
+
+
+  <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div> <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150"></div>
+
+        <button type="button" class="btn-close"  (click)="closemodal()"data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Your password has been updated successfully. You will be redirected to the homepage
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="custom-button" data-bs-dismiss="modal" (click)="closemodal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 

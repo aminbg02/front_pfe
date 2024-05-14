@@ -116,8 +116,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="contact-header">
-                <h2 class="text-center">Change Email</h2>
-                <p class="text-center">Update your email address</p>
+                <h2 class="text-center">Change Your Login!</h2>
+
             </div>
         </div>
     </div>
@@ -126,10 +126,10 @@
             <div class="contact-form">
                 <form (ngSubmit)="changeEmail()">
                     <div class="form-group">
-                        <label for="newEmail">New Email:</label>
+                        <label for="newEmail">New Login:</label>
                         <input type="email" id="newEmail" name="newEmail" class="form-control" [(ngModel)]="newEmail" required>
                     </div>
-                    <button type="submit" class="custom-button">Submit</button>
+                    <button type="submit" class="custom-button " >Submit</button>
                 </form>
             </div>
         </div>
@@ -195,4 +195,32 @@
         </div>
     </div>
 </section>
+
+
+
+
+<!-- The Modal --><div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div> <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150"></div>
+
+        <button type="button" class="btn-close"  (click)="closemodal()"data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Your Login has been changed successfully to {{this.newEmail}}. You will be redirected to the homepage
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="custom-button" data-bs-dismiss="modal" (click)="closemodal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 

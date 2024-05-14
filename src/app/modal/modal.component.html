@@ -1,14 +1,28 @@
+<style>
+  .modal-title {
+    color: black;
+    font-weight: bold;
+  }
+  .p {
+    color: black;
+  }
+</style>
+
+<h5 class="modal-title">{{ modalTitle }}</h5>
+<p>{{ modalMessage }}</p>
+
 <div class="modal" [ngClass]="{'show': showModal}">
   <div class="modal-dialog">
     <div class="modal-content">
+      <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
       <div class="modal-header">
-        <h5 class="modal-title">{{ modalTitle }}</h5>
+        <h5 class="modal-title" >{{ modalTitle }}</h5>
       </div>
       <div class="modal-body">
         <p>{{ modalMessage }}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="closeModal()">OK</button>
+        <button type="button" class="custom-button black-text" (click)="closeModal()">OK</button>
       </div>
     </div>
   </div>

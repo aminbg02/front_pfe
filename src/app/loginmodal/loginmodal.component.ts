@@ -1,4 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {JwtService} from "../services/jwt.service";
 
 @Component({
   selector: 'app-loginmodal',
@@ -13,10 +16,16 @@ export class LoginmodalComponent implements OnInit {
 
   modalTitle: string = '';
 
-  ngOnInit() {
-    this.modalTitle = this.modalType === 'success' ? 'Login  Successful' : 'Login Error';
-    this.modalMessage = this.modalType === 'success' ? 'You will be redirceted to the home page shortly!' : 'Login Error';
+  constructor( public jwtService: JwtService) { }
 
+
+  ngOnInit() {
+    const name = this.jwtService.getName();
+
+    setTimeout(() => {
+      this.modalTitle = this.modalType === 'success' ? 'Login Successful ' + "Amin" : 'Login Error';
+      this.modalMessage = this.modalType === 'success' ? 'You will be redirected to the home page shortly!' : 'Login Error';
+    }, 8000); // 8000 milliseconds = 8 seconds
   }
 
 

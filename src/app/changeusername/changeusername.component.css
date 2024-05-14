@@ -798,3 +798,72 @@ a:focus {
 .custom-button:active {
   transform: translateY(-0.5px);
 }
+
+
+.custom-button {
+  width: 85px; /* Define the width of the button */
+  background-color: transparent;
+  color: black;
+  border: 1px solid rgba(255, 255, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  font-size: 13px;
+}
+
+.custom-button:hover {
+  background-color: yellow;
+  color: black;
+  transform: translateY(-3.5px);
+}
+
+.custom-button:active {
+  transform: translateY(-0.5px);
+}
+
+
+.custom-button {
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* CSS to style the modal */
+#myModal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure the modal appears on top of other elements */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+  padding: 20px;
+}
+
+#myModal .modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+}
+
+/* Show the modal when the 'show' class is added */
+#myModal.show {
+  display: block;
+}
+
+
+
+.logo{
+  margin-left: 100px;
+}
+#myModal .modal-title {
+  font-family: 'Arial', sans-serif; /* Change the font family */
+  font-size: 24px; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Set the text color */
+}

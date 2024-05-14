@@ -24,6 +24,7 @@ import { FormmodalComponent } from './formmodal/formmodal.component';
 import { ModifyModalComponent } from './modifymodal/modifymodal.component';
 import { DeletemodalComponent } from './deletemodal/deletemodal.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { ManageusersComponent } from './manageusers/manageusers.component';
 
 
 
@@ -49,6 +50,7 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
     ModifyModalComponent,
     DeletemodalComponent,
     ChatbotComponent,
+    ManageusersComponent,
 
 
   ],
