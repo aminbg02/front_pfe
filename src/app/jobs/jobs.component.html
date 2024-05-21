@@ -117,21 +117,6 @@
       border-radius: 65px;
     }
 
-    .career-title {
-      background-color: #4e63d7;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      border-radius: 10px 10px 0 0;
-      background-image: -webkit-gradient(linear, left top, right top, from(rgba(78, 99, 215, 0.9)), to(#5a85dd));
-      background-image: linear-gradient(to right, rgba(78, 99, 215, 0.9) 0%, #5a85dd 100%);
-    }
-
-    .job-overview {
-      -webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
-      box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
-      border-radius: 10px;
-    }
 
     @media (min-width: 992px) {
       .job-overview {
@@ -182,9 +167,28 @@
       top: 1px;
     }
 
+
     .mb-30 {
       margin-bottom: 30px;
     }
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .row {
+      background-image: url('assets/images/parking2.jpg');
+
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+
+    }
+
   </style>
 </head>
 <body>
@@ -266,13 +270,8 @@
   <!-- Slider Section End -->
 </div>
 
-<div class="row">
-  <div class="col-lg-10 mx-auto mb-4">
-    <div class="section-title text-center ">
-      <h3 class="top-c-sep">Grow your career with us</h3>
-    </div>
-  </div>
-</div>
+
+
 <div class="row">
   <div class="col-lg-10 mx-auto">
     <div class="career-search mb-60">
@@ -297,32 +296,32 @@
         </div>
       </div>
       <div class="filter-result">
-      <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let job of jobs ">
-        <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-          <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-            {{ job.name.charAt(0) }}{{ job.name.charAt(1) }}
+        <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let job of jobs ">
+          <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+            <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+              {{ job.name.charAt(0) }}{{ job.name.charAt(1) }}
+            </div>
+            <div class="job-content">
+              <h5 class="text-center text-md-left">{{ job.name }}</h5>
+              <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                <li class="mr-md-4">{{ stripHtmlTags(job.description) }}</li>
+              </ul>
+            </div>
           </div>
-          <div class="job-content">
-            <h5 class="text-center text-md-left">{{ job.name }}</h5>
-            <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
-              <li class="mr-md-4">{{ stripHtmlTags(job.description) }}</li>
-            </ul>
+          <div class="job-right my-4 flex-shrink-0">
+            <a  class="custom-button black-text"   (click)="ApplyForJob(job)">Apply Now</a>
           </div>
         </div>
-        <div class="job-right my-4 flex-shrink-0">
-          <a  class="custom-button black-text"   (click)="ApplyForJob(job)">Apply Now</a>
-      </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
   <!-- Info Section Start -->
   <section class="info_section">
     <div class="container">
       <div class="info_top">
         <div class="row">
+
           <div class="col-md-6 col-lg-3 info_col">
             <div class="info_form">
               <div class="img-box" > <!-- hony ken fama id id="s&b" -->
@@ -391,32 +390,44 @@
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Job Application</h4>
+            <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
+
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <!-- Modal body -->
+          <form>
           <div class="modal-body">
             <input type="file" class="file-upload" (change)="onFileChange($event)" #fileUpload>
           </div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="custom-button2" (click)="closedelModal()">No</button>
-            <button type="button" class="custom-button" (click)="submitApplication()">Submit</button>
-          </div>
 
+          <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closedelModal()">Close</button>
+              <button type="submit" class="btn btn-primary" (click)="submitApplication()">Submit Application</button>
+              <button   *ngIf="spont" class="btn btn-primary btn-receipt" (click)="generatePdf2()">Click Here To Receive a Receipt</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+
+<style>
+  .modal-body {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: auto;
+  }
+</style>
+
 
 <div class="modal" id="myModal2">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Job Application!</h4>
+        <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
         <button (click)="closejobmodal()" type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <form >
+      <form>
         <div class="modal-body">
           <!-- Display questions and answers dynamically -->
           <div *ngIf="response && response.data">
@@ -430,17 +441,18 @@
             </div>
           </div>
         </div>
-
+        <div class="file-upload-container">
+          <div style="margin-left: 30px">
+            <label for="fileUpload">Submit Your Resume Here</label>
+            <input type="file" class="file-upload" (change)="onFileChange($event)" id="fileUpload">
+          </div>        </div>
         <div class="modal-footer">
-          <button  type="submit" class="btn btn-primary" (click)="onSubmitForm()">Submit Application</button>
           <button type="button" class="btn btn-secondary" (click)="closejobmodal2()">Close</button>
-          <button *ngIf="submitted" class="btn btn-primary" (click)="generatePdf()">Click Here To Receive a Receipt</button>
+          <button type="submit" class="btn btn-primary" (click)="onSubmitForm()">Submit Application</button>
+          <button *ngIf="submitted" class="btn btn-primary btn-receipt" (click)="generatePdf()">Click Here To Receive a Receipt</button>
         </div>
-          <input type="file" class="file-upload" (change)="onFileChange($event)" #fileUpload>
       </form>
     </div>
   </div>
 </div>
-
-
 

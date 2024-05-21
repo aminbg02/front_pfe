@@ -827,7 +827,7 @@ a:focus {
 .modal-content {
   padding: 20px;
 }
-
+/*
 .modal-header {
   background-color: #007bff;
   color: white;
@@ -835,7 +835,7 @@ a:focus {
   display: flex;
   justify-content: space-between;
 }
-
+*/
 .modal-body {
   padding: 20px;
 }
@@ -857,4 +857,106 @@ hr {
   border: 0;
   border-top: 1px solid #ccc;
   margin: 10px 0;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: 60px;
+}
+
+.file-upload-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 60px; /* Adjust this value as needed */
+  margin-left:245px;
+}
+
+.file-upload {
+  margin-left: 15px; /* Adjust this value as needed */
+}
+
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/*
+.modal-header {
+  background-color: #fdc300;
+  padding: 10px 20px;
+}*/
+
+.modal-body {
+  padding: 20px;
+}
+
+.file-upload-container {
+  margin: 20px 0;
+}
+
+.file-upload {
+  /* Add your custom styles for the file upload input */
+}
+
+.modal-footer {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  margin: 0 5px;
+}
+/*
+ .modal-title{
+  background-color: #fdc300;
+}
+ */
+.btn btn-secondary{
+  background-color: red;
+}
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-upload-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.file-upload {
+  margin-left: 15px;
+}
+
+.btn-receipt {
+ margin-left: 100px;
+  margin-top: 10px; /* Adjust this value to move the button down */
+}
+
+.logo{
+  margin-left: 95px;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0; /* Remove default padding */
+}
+.bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.bg-image {
+
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  filter: blur(5px); /* Add a blur effect to the image */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay */
 }
