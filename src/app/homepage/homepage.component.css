@@ -124,11 +124,11 @@ a:focus {
   margin-top: 0;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
+  margin-left:-25px;
 }
 
-.header_section {
-  padding: 10px 0;
-}
+
 
 .header_section .container-fluid {
   padding-right: 25px;
@@ -152,7 +152,7 @@ a:focus {
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
-  padding: 7px 15px; /* Adjust the padding to increase the spacing */
+  padding: 7px 15px; /*Adjust the padding to increase the spacing */
   color: #ffffff;
   text-align: center;
   text-transform: uppercase;
@@ -733,7 +733,7 @@ a:focus {
 }
 /*# sourceMappingURL=style.css.map */
 .custom-button {
-  width: 85px; /* Define the width of the button */
+  width: 125px; /* Define the width of the button */
   background-color: transparent;
   color: white;
   border: 1px solid rgba(255, 255, 0, 0.5);
@@ -744,7 +744,7 @@ a:focus {
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-size: 13px;
+  font-size: 10px;
 }
 
 .custom-button:hover {

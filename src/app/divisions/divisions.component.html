@@ -28,7 +28,6 @@
     <img src="/assets/images/slider-bg.jpg" alt="" />
   </div>
   <!-- Header Section Start -->
-
   <header class="header_section">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container">
@@ -44,13 +43,16 @@
               <li class="nav-item">
                 <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
-
+              <li class="nav-item">
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+              </li>
               <li class="nav-item">
                 <button class="custom-button" (click)="navigateToLogin()">Login</button>
               </li>
               <li class="nav-item">
                 <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
               </li>
+
             </ng-container>
             <ng-template #loggedInUser>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
@@ -62,8 +64,8 @@
               <li class="nav-item">
                 <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
-              <li class="nav-item">
-                <button class="custom-button" (click)="navigateToContact()">Contact </button>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+                <button class="custom-button" (click)="navigateTomanagejusers()">Manage Users </button>
               </li>
               <li class="nav-item">
                 <button class="custom-button">{{ getUserDisplayName() }}</button>
@@ -72,17 +74,22 @@
                 <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
               </li>
               <li class="nav-item">
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+              </li>
+              <li class="nav-item">
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+              </li>
+              <li class="nav-item">
                 <button class="custom-button" (click)="logout()">Logout</button>
               </li>
-
             </ng-template>
           </ul>
         </div>
-
-
       </nav>
     </div>
   </header>
+  <!-- Header Section End -->
+
   <section class="slider_section">
     <div class="container">
       <div class="detail-box col-md-9 mx-auto px-0">

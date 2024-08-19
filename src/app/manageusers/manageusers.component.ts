@@ -63,11 +63,24 @@ export class ManageusersComponent implements OnInit{
 
 
   closeModal() {
-
+    const modelDiv = document.getElementById('myModal');
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
   }
 
   closedelModal() {
+    const modelDiv = document.getElementById('myModal2');
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
+  }
 
+  closedelModal3() {
+    const modelDiv = document.getElementById('myModal000');
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
   }
 
   // @ts-ignore

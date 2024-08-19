@@ -38,64 +38,71 @@
     <div class="bg-box">
         <img src="/assets/images/slider-bg.jpg" alt="" />
     </div>
-    <!-- Header Section Start -->
+    <!-- Header Section Start -->  <header class="header_section">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg custom_nav-container">
+      <a class="navbar-brand" href="index.html">
+        <span> Scheidt & Bachmann Maghreb </span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
+            <li class="nav-item active">
+              <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+            </li>
 
-  <!-- Header Section Start -->
-  <header class="header_section">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="index.html">
-          <span> Scheidt & Bachmann Maghreb </span>
-        </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
-              <li class="nav-item active">
-                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
-              </li>
+            <li class="nav-item">
+              <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
+            </li>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'" >
+              <button class="custom-button" (click)="navigateTomanagejusers()">Manage Users </button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" (click)="navigateToLogin()">Login</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
+            </li>
 
-              <li class="nav-item">
-                <button class="custom-button" (click)="navigateToLogin()">Login</button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
-              </li>
-            </ng-container>
-            <ng-template #loggedInUser>
-              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
-              </li>
-              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
-                <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button" (click)="navigateToContact()">Contact </button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button">{{ getUserDisplayName() }}</button>
-              </li>
-              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button" (click)="logout()">Logout</button>
-              </li>
+          </ng-container>
+          <ng-template #loggedInUser>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+              <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+            </li>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+              <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
+            </li>
 
-            </ng-template>
-          </ul>
-        </div>
+            <li class="nav-item">
+              <button class="custom-button">{{ getUserDisplayName() }}</button>
+            </li>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+              <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
+            </li>
+
+            <li class="nav-item">
+              <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" (click)="logout()">Logout</button>
+            </li>
+
+          </ng-template>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+  <!-- Header Section End -->
 
 
-      </nav>
-    </div>
-  </header>
-    <!-- Slider Section Start -->
+  <!-- Slider Section Start -->
     <section class="slider_section">
         <div class="container">
             <div class="detail-box col-md-9 mx-auto px-0">

@@ -43,6 +43,20 @@ export class ContactComponent {
   }
 
 
+
+
+
+  navigatetoatbot() {
+    this.router.navigate(['/chatbot']); // Navigate to the /login route
+
+  }
+
+
+  navigateTomanagejusers() {
+    this.router.navigate(['/manageusers']); // Navigate to the /signup route
+  }
+
+
   navigateToSignup() {
     this.router.navigate(['/signup']); // Navigate to the /signup route
   }
@@ -50,7 +64,9 @@ export class ContactComponent {
   navigateToLogin() {
     this.router.navigate(['/login']); // Navigate to the /login route
   }
-
+  navigateToDJobs() {
+    this.router.navigate(['/jobs']);
+  }
   isUserSignedIn(): boolean {
     return !!localStorage.getItem('token');
   }

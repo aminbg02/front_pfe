@@ -258,4 +258,16 @@ export class ManagejobsComponent implements OnInit {
     {
       modelDiv.style.display="none"}
   }
+
+
+  navigatetoatbot() {
+    this.router.navigate(['/chatbot']); // Navigate to the /login route
+
+  }
+
+
+  navigateTomanagejusers() {
+    this.router.navigate(['/manageusers']); // Navigate to the /signup route
+  }
+
 }

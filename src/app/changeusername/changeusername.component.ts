@@ -68,6 +68,7 @@ export class ChangeusernameComponent {
     return !!localStorage.getItem('token');
   }
 
+
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/homepage']);
@@ -100,5 +101,20 @@ export class ChangeusernameComponent {
     {
       modelDiv.style.display="none"}
   }
+
+
+
+
+  navigatetoatbot() {
+    this.router.navigate(['/chatbot']); // Navigate to the /login route
+
+  }
+
+
+  navigateTomanagejusers() {
+    this.router.navigate(['/manageusers']); // Navigate to the /signup route
+  }
+
+
 }
 

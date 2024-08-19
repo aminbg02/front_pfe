@@ -270,12 +270,10 @@
       <div class="modal-logo">
         <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
       </div>
-      <button type="button" class="close" (click)="closeModal()">
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </button>
+        <button type="button" (click)="closeModal()" class="btn-close" data-bs-dismiss="modal"></button>
     </div>
 
-      <div class="modal-body">
+      <div class="modal-body" id="myModal2">
         <p>You are about a user.Would you like to proceed with this action? </p>
       </div>
       <div class="modal-footer">
@@ -298,15 +296,15 @@
           <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
         </div>
 
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button   (click)="closedelModal3()" type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <!-- Modal body -->
       <div class="modal-body">
         User deleted successfully
       </div>
       <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="custom-button" data-bs-dismiss="modal" >Close</button>
+      <div class="modal-footer" id="myModal3">
+        <button  (click)="closedelModal3()"type="button" class="custom-button" data-bs-dismiss="modal" >Close</button>
       </div>
     </div>
   </div>

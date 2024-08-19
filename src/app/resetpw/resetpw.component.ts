@@ -104,4 +104,19 @@ export class ResetpwComponent {
     {
       modelDiv.style.display="none"}
   }
+
+
+  navigatetoatbot() {
+    this.router.navigate(['/chatbot']); // Navigate to the /login route
+
+  }
+  navigateToManageJobs() {
+    this.router.navigate(['/managejobs']);
+  }
+
+
+  navigateTomanagejusers() {
+    this.router.navigate(['/manageusers']); // Navigate to the /signup route
+  }
+
 }

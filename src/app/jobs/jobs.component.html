@@ -180,7 +180,7 @@
       overflow: hidden;
     }
 
-    .row {
+    .row2 {
       background-image: url('assets/images/parking2.jpg');
 
       background-size: cover;
@@ -197,62 +197,65 @@
   <div class="bg-box">
     <img src="/assets/images/slider-bg.jpg" alt="" />
   </div>
-  <!-- Header Section Start -->
-  <header class="header_section">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="index.html">
-          <span> Scheidt & Bachmann Maghreb </span>
-        </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
-              <li class="nav-item active">
-                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
-              </li>
+  <!-- Header Section Start -->  <header class="header_section">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg custom_nav-container">
+      <a class="navbar-brand" href="index.html">
+        <span> Scheidt & Bachmann Maghreb </span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <ng-container *ngIf="!isUserSignedIn(); else loggedInUser">
+            <li class="nav-item active">
+              <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" (click)="navigateToLogin()">Login</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
+            </li>
 
-              <li class="nav-item">
-                <button class="custom-button" (click)="navigateToLogin()">Login</button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
-              </li>
-            </ng-container>
-            <ng-template #loggedInUser>
-              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
-              </li>
-              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
-                <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button" (click)="navigateToContact()">Contact </button>
-              </li>
-              <li class="nav-item">
-                <button  class="custom-button">{{ getUserDisplayName() }}</button>
-              </li>
-              <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
-                <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
-              </li>
-              <li class="nav-item">
-                <button class="custom-button" (click)="logout()">Logout</button>
-              </li>
+          </ng-container>
+          <ng-template #loggedInUser>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+              <button class="custom-button" (click)="navigateToDJobs()">Career <span class="sr-only">(current)</span></button>
+            </li>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+              <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
+            </li>
 
-            </ng-template>
-          </ul>
-        </div>
+            <li class="nav-item">
+              <button class="custom-button">{{ getUserDisplayName() }}</button>
+            </li>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
+              <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
+            </li>
+            <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+              <button class="custom-button" (click)="navigateTomanagejusers()">Manage Users </button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-button" (click)="logout()">Logout</button>
+            </li>
 
-
-      </nav>
-    </div>
-  </header>
-
+          </ng-template>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
   <!-- Slider Section Start -->
   <section class="slider_section">
     <div class="container">
@@ -272,7 +275,7 @@
 
 
 
-<div class="row">
+<div class="row2">
   <div class="col-lg-10 mx-auto">
     <div class="career-search mb-60">
       <div class="row">
@@ -291,8 +294,14 @@
           </div>
         </div>
         <div class="job-right my-4 flex-shrink-0">
+          <a
+            class="custom-button5 black-text"
+            [attr.aria-disabled]="!userlogged()"
+            [ngClass]="{'disabled': !userlogged()}"
+            (click)="userlogged() ? ApplyModal() : null">
+            Apply Now
+          </a>
 
-          <a  class="custom-button black-text" (click)="ApplyModal()">Apply Now</a>
         </div>
       </div>
       <div class="filter-result">
@@ -309,8 +318,13 @@
             </div>
           </div>
           <div class="job-right my-4 flex-shrink-0">
-            <a  class="custom-button black-text"   (click)="ApplyForJob(job)">Apply Now</a>
-          </div>
+            <a
+              class="custom-button5 black-text"
+              [attr.aria-disabled]="!userlogged()"
+              [ngClass]="{'disabled': !userlogged()}"
+              (click)="userlogged() ? ApplyForJob(job) : null">
+              Apply Now
+            </a></div>
         </div>
       </div>
     </div>
@@ -321,7 +335,6 @@
     <div class="container">
       <div class="info_top">
         <div class="row">
-
           <div class="col-md-6 col-lg-3 info_col">
             <div class="info_form">
               <div class="img-box" > <!-- hony ken fama id id="s&b" -->
@@ -387,12 +400,10 @@
     <div class="modal" id="myModal">
       <div class="modal-dialog">
         <div class="modal-content">
-
           <!-- Modal Header -->
           <div class="modal-header">
             <img class="logo" src="assets/images/s&b.png" alt="Logo" width="250" height="150">
-
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" (click)="closemmodal()" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <!-- Modal body -->
           <form>
@@ -400,10 +411,9 @@
             <input type="file" class="file-upload" (change)="onFileChange($event)" #fileUpload>
           </div>
 
-
           <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="closedelModal()">Close</button>
+              <button type="button" class="btn btn-secondary" (click)="closemmodal()">Close</button>
               <button type="submit" class="btn btn-primary" (click)="submitApplication()">Submit Application</button>
               <button   *ngIf="spont" class="btn btn-primary btn-receipt" (click)="generatePdf2()">Click Here To Receive a Receipt</button>
             </div>

@@ -738,10 +738,11 @@ a:focus {
   padding-left: 10px;
 }
 
+
 .custom-button {
-  width: 85px; /* Define the width of the button */
+  width: 125px; /* Define the width of the button */
   background-color: transparent;
-  color: black;
+  color: white;
   border: 1px solid rgba(255, 255, 0, 0.5);
   padding: 8px 16px;
   border-radius: 4px;
@@ -750,8 +751,9 @@ a:focus {
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-size: 13px;
+  font-size: 10px;
 }
+
 
 .custom-button:hover {
   background-color: yellow;

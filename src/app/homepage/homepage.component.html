@@ -43,13 +43,16 @@
               <li class="nav-item">
                 <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
-
+              <li class="nav-item">
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
+              </li>
               <li class="nav-item">
                 <button class="custom-button" (click)="navigateToLogin()">Login</button>
               </li>
               <li class="nav-item">
                 <button class="custom-button" style="margin-right: 10px;" (click)="navigateToSignup()">Sign up</button>
               </li>
+
             </ng-container>
             <ng-template #loggedInUser>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
@@ -58,17 +61,22 @@
               <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
                 <button class="custom-button" (click)="navigateToManageJobs()">Manage Jobs <span class="sr-only">(current)</span></button>
               </li>
+              <li class="nav-item" *ngIf="jwtService.getRole() === 'admin'">
+                <button class="custom-button" (click)="navigateTomanagejusers()">Manage Users </button>
+              </li>
               <li class="nav-item">
                 <button class="custom-button"    (click)="navigateToDivisons()"> Divisons</button>
               </li>
-              <li class="nav-item">
-                <button class="custom-button" (click)="navigateToContact()">Contact </button>
-              </li>
+
               <li class="nav-item">
                 <button class="custom-button">{{ getUserDisplayName() }}</button>
               </li>
               <li class="nav-item" *ngIf="jwtService.getRole() === 'user'">
                 <button class="custom-button" (click)="navigateToManageAccount()">Manage Account</button>
+              </li>
+
+              <li class="nav-item">
+                <button class="custom-button" style="margin-right: 10px;" (click)="navigatetoatbot()">ChatBot</button>
               </li>
               <li class="nav-item">
                 <button class="custom-button" (click)="logout()">Logout</button>
@@ -77,8 +85,6 @@
             </ng-template>
           </ul>
         </div>
-
-
       </nav>
     </div>
   </header>

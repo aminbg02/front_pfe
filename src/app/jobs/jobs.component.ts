@@ -122,10 +122,19 @@ export class JobsComponent implements OnInit {
     const modelDiv = document.getElementById('myModal')
     if ( modelDiv!=null)
     { modelDiv.style.display="block"}
+  }
 
 
+
+  closemmodal()
+  {
+    const modelDiv = document.getElementById('myModal')
+    if ( modelDiv!=null)
+    {
+      modelDiv.style.display="none"}
 
   }
+
 
   closedelModal() {
 
@@ -274,6 +283,29 @@ export class JobsComponent implements OnInit {
 
 
 
+  navigatetoatbot() {
+    this.router.navigate(['/chatbot']); // Navigate to the /login route
+
+  }
+
+  userlogged():boolean
+  {
+    const token = localStorage.getItem('token');
+    if (token) {
+
+      return true;
+    }
+    return false;
+  }
+
+
+  navigateTomanagejusers() {
+    this.router.navigate(['/manageusers']); // Navigate to the /signup route
+  }
+
+
+
+
   // @ts-ignore
   submitApplication2() {
     console.log(this.score)
@@ -405,7 +437,7 @@ export class JobsComponent implements OnInit {
     // Get the user's email and name from the JwtService
     const userEmail = this.jwtService.getEmail();
     const userName = this.jwtService.getName();
-
+    this.submitted=true;
     // Get the PDF file from the file input
 
     // Create a FormData object

@@ -739,7 +739,7 @@ a:focus {
 }
 
 .custom-button {
-  width: 85px; /* Define the width of the button */
+  width: 100px; /* Define the width of the button */
   background-color: transparent;
   color: white;
   border: 1px solid rgba(255, 255, 0, 0.5);
@@ -750,8 +750,9 @@ a:focus {
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-size: 13px;
+  font-size: 10px;
 }
+
 
 .custom-button:hover {
   background-color: yellow;

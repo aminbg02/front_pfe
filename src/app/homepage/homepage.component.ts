@@ -38,6 +38,9 @@ export class HomepageComponent {
   navigateToSignup() {
     this.router.navigate(['/signup']); // Navigate to the /signup route
   }
+  navigateTomanagejusers() {
+    this.router.navigate(['/manageusers']); // Navigate to the /signup route
+  }
 
   navigateToLogin() {
     this.router.navigate(['/login']); // Navigate to the /login route
@@ -84,4 +87,8 @@ export class HomepageComponent {
     window.open(url, '_blank'); // Opens the URL in a new tab
   }
 
+  navigatetoatbot() {
+    this.router.navigate(['/chatbot']); // Navigate to the /login route
+
+  }
 }
